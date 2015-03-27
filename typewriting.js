@@ -8,12 +8,15 @@
 	var inputString = "";
 	var currentNumber = 1;
 	var setting;
+	var inHtmlTag;
+	var target;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
 		$('head').append( classModel );
 
 		inputString = input_string;
+		target = this;
 
 		setting = $.extend({
 			typing_interval: 150
@@ -25,21 +28,31 @@
 
 		// }
 
+		typingGo();
+
 	};
 
 	function typingGo() {
 
-		
+		var thisText = getText();
 
-		setTimeout( function(){
+		if( thisText.slice(-1) == "<" ) inHtmlTag = true;
+		if( thisText.slice(-1) == ">" ) inHtmlTag = false;
+
+		target.html( thisText );
+
+		if( inHtmlTag )
 			typingGo();
-		}, setting.typing_interval);
+		else
+			setTimeout( function(){
+				typingGo();
+			}, setting.typing_interval);
 
 	}
 
-	function getText( string ) {
+	function getText() {
 
-		var returnString = string.slice( 0, currentNumber );
+		var returnString = inputString.slice( 0, currentNumber );
 		currentNumber++;
 		return returnString
 
