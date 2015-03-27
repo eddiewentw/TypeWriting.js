@@ -1,5 +1,6 @@
 <h2>TypeWriting.js</h2>
 
+[DEMO page](http://eddiewen-taiwan.github.io/typewriting/)
 
 ```javascript
 
