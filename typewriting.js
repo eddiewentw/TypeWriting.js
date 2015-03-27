@@ -17,10 +17,11 @@
 
 		var setting = $.extend({
 			typing_interval: 150,
-			blink_interval: "0.7s"
+			blink_interval: "0.7s",
+			cursor_color: "black"
 		}, options);
 
-		var part2 = '.typingCursor::after { content: ""; width: 10px; height: ' + cursorHeight + 'px; margin-left: 5px; display: inline-block; vertical-align: bottom; background-color: black; -webkit-animation: blink ' + setting.blink_interval + ' infinite; -moz-animation: blink ' + setting.blink_interval + ' infinite; animation: blink ' + setting.blink_interval + ' infinite; }';
+		var part2 = '.typingCursor::after { content: ""; width: 10px; height: ' + cursorHeight + 'px; margin-left: 5px; display: inline-block; vertical-align: bottom; background-color: ' + cursor_color + '; -webkit-animation: blink ' + setting.blink_interval + ' infinite; -moz-animation: blink ' + setting.blink_interval + ' infinite; animation: blink ' + setting.blink_interval + ' infinite; }';
 
 		$('head').append( '<style type="text/css">' + part1 + part2 + '</style>' );
 
