@@ -5,29 +5,43 @@
 	\* ---------------------------------- */
 
 	var classModel = '<style type="text/css"> @-webkit-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @-moz-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } </style>';
+	var inputString = "";
+	var currentNumber = 1;
+	var setting;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
-;
+
 		$('head').append( classModel );
 
-		var setting = $.extend({
+		inputString = input_string;
+
+		setting = $.extend({
 			typing_interval: 150
 		}, options);
 
+		// while( currentNumber <= inputString.length ) {
+
+		// 	var this
+
+		// }
+
 	};
 
-	function keyIn( target, typingString ) {
+	function typingGo() {
 
-		var typingStr = typingString.slice( 0, os_string_current ).replace( "A", "<br/>" );
+		
 
-		target.html( typingStr );
-		os_string_current++;
+		setTimeout( function(){
+			typingGo();
+		}, setting.typing_interval);
 
-		if( os_string_current <= typingString.length ) {
-			setTimeout( function() {
-				keyIn( target, typingString );
-			}, typingInterval);
-		}
+	}
+
+	function getText( string ) {
+
+		var returnString = string.slice( 0, currentNumber );
+		currentNumber++;
+		return returnString
 
 	}
 
