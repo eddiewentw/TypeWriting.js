@@ -58,7 +58,7 @@
 		function getText() {
 			var returnString = input_string.slice( 0, currentNumber );
 			currentNumber++;
-			return returnString
+			return returnString;
 		}
 
 	};
