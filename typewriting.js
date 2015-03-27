@@ -49,8 +49,9 @@
 						typingGo();
 					}, setting.typing_interval);
 
-			} else
-				callback_func();
+			} else {
+				if( callback_func ) callback_func();
+			}
 		}
 
 
