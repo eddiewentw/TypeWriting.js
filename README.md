@@ -7,6 +7,7 @@
 $('.string').typewriting( "Text here", {
 	"typing_interval": 300,
 	"blink_interval": "1.5s"
+	"cursor_color": "white"
 }, function() {
 	console.log( "Do this function after typing" );
 });
