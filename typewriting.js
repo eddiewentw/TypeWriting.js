@@ -22,31 +22,29 @@
 			typing_interval: 150
 		}, options);
 
-		// while( currentNumber <= inputString.length ) {
-
-		// 	var this
-
-		// }
-
 		typingGo();
 
 	};
 
 	function typingGo() {
 
-		var thisText = getText();
+		if( currentNumber <= inputString.length ) {
 
-		if( thisText.slice(-1) == "<" ) inHtmlTag = true;
-		if( thisText.slice(-1) == ">" ) inHtmlTag = false;
+			var thisText = getText();
 
-		target.html( thisText );
+			if( thisText.slice(-1) == "<" ) inHtmlTag = true;
+			if( thisText.slice(-1) == ">" ) inHtmlTag = false;
 
-		if( inHtmlTag )
-			typingGo();
-		else
-			setTimeout( function(){
+			target.html( thisText );
+
+			if( inHtmlTag )
 				typingGo();
-			}, setting.typing_interval);
+			else
+				setTimeout( function(){
+					typingGo();
+				}, setting.typing_interval);
+
+		}
 
 	}
 
