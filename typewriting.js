@@ -6,7 +6,7 @@
 
 	var part1 = '@-webkit-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @-moz-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } ';
 
-	var currentNumber = 1;
+	var currentNumber = 0;
 	var inHtmlTag;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
@@ -21,7 +21,7 @@
 			cursor_color: "black"
 		}, options);
 
-		var part2 = '.typingCursor::after { content: ""; width: 10px; height: ' + cursorHeight + 'px; margin-left: 5px; display: inline-block; vertical-align: bottom; background-color: ' + cursor_color + '; -webkit-animation: blink ' + setting.blink_interval + ' infinite; -moz-animation: blink ' + setting.blink_interval + ' infinite; animation: blink ' + setting.blink_interval + ' infinite; }';
+		var part2 = '.typingCursor::after { content: ""; width: 10px; height: ' + cursorHeight + 'px; margin-left: 5px; display: inline-block; vertical-align: bottom; background-color: ' + setting.cursor_color + '; -webkit-animation: blink ' + setting.blink_interval + ' infinite; -moz-animation: blink ' + setting.blink_interval + ' infinite; animation: blink ' + setting.blink_interval + ' infinite; }';
 
 		$('head').append( '<style type="text/css">' + part1 + part2 + '</style>' );
 
