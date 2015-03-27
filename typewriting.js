@@ -4,57 +4,63 @@
 					打 字 機
 	\* ---------------------------------- */
 
-	var classModel = '<style type="text/css"> @-webkit-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @-moz-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } </style>';
-	var inputString = "";
+	var part1 = '@-webkit-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @-moz-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } ';
+
 	var currentNumber = 1;
-	var setting;
 	var inHtmlTag;
-	var target;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
-		$('head').append( classModel );
+		this.text("A");
+		var cursorHeight = this.height();
+		this.text("");
 
-		inputString = input_string;
-		target = this;
-
-		setting = $.extend({
-			typing_interval: 150
+		var setting = $.extend({
+			typing_interval: 150,
+			blink_interval: "0.7s"
 		}, options);
+
+		var part2 = '.typingCursor::after { content: ""; width: 10px; height: ' + cursorHeight + 'px; margin-left: 5px; display: inline-block; vertical-align: bottom; background-color: black; -webkit-animation: blink ' + setting.blink_interval + ' infinite; -moz-animation: blink ' + setting.blink_interval + ' infinite; animation: blink ' + setting.blink_interval + ' infinite; }';
+
+		$('head').append( '<style type="text/css">' + part1 + part2 + '</style>' );
+
+		var target = this.addClass("typingCursor");
 
 		typingGo();
 
-	};
 
-	function typingGo() {
 
-		if( currentNumber <= inputString.length ) {
+		function typingGo() {
 
-			var thisText = getText();
+			if( currentNumber <= input_string.length ) {
 
-			if( thisText.slice(-1) == "<" ) inHtmlTag = true;
-			if( thisText.slice(-1) == ">" ) inHtmlTag = false;
+				var thisText = getText();
 
-			target.html( thisText );
+				if( thisText.slice(-1) == "<" ) inHtmlTag = true;
+				if( thisText.slice(-1) == ">" ) inHtmlTag = false;
 
-			if( inHtmlTag )
-				typingGo();
-			else
-				setTimeout( function(){
+				target.html( thisText );
+
+				if( inHtmlTag )
 					typingGo();
-				}, setting.typing_interval);
+				else
+					setTimeout( function(){
+						typingGo();
+					}, setting.typing_interval);
 
+			} else
+				callback_func();
 		}
 
-	}
 
-	function getText() {
 
-		var returnString = inputString.slice( 0, currentNumber );
-		currentNumber++;
-		return returnString
+		function getText() {
+			var returnString = input_string.slice( 0, currentNumber );
+			currentNumber++;
+			return returnString
+		}
 
-	}
+	};
 
 }(jQuery));
 
