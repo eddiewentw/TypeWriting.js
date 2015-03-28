@@ -6,7 +6,6 @@
 
 	var part1 = '@-webkit-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @-moz-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } } ';
 
-	var currentNumber = 0;
 	var inHtmlTag;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
@@ -15,6 +14,7 @@
 		var cursorHeight = this.height();
 		this.text("");
 
+		var currentNumber = 0;
 		var setting = $.extend({
 			typing_interval: 150,
 			blink_interval: "0.7s",
@@ -63,6 +63,10 @@
 		}
 
 	};
+
+	$.fn.typeagain = function() {
+		
+	}
 
 }(jQuery));
 
