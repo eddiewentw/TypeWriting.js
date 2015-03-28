@@ -7,6 +7,11 @@ $(document).ready( function(){
 		}, function() {
 			console.log( "END" );
 		});
+		setTimeout( function(){
+			$('.terminal').rewrite( "This is TypeWriting.js", function(){
+				console.log( "END, 2." );
+			});
+		}, 3300);
 	}, 1000);
 });
 
