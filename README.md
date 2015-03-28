@@ -16,7 +16,7 @@ At second parameter, you can set some options.
 	<li>typing_interval: the interval between each text</li>
 	<li>blink_interval: the interval of the cursor blinks</li>
 	<li>cursor_color: the color of the cursor</li>
-<ul>
+</ul>
 
 Third parameter is the function after typing effect.
 
