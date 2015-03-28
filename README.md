@@ -1,5 +1,7 @@
 <h2>TypeWriting.js</h2>
 
+If you want to make the typeing effect, this ia what you need.
+
 [DEMO page](http://eddiewen-taiwan.github.io/typewriting/)
 
 ```javascript
