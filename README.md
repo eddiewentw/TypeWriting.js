@@ -6,7 +6,7 @@ If you want to make the typeing effect, this is what you need.
 
 ******************************
 
-<h4>First Function - typewriting</h4>
+<h4>First Function - typewriting()</h4>
 
 Put the text as first parameter.
 
@@ -32,7 +32,7 @@ $('.string').typewriting( "Text here", {
 
 ```
 
-<h4>Second Function - rewrite</h4>
+<h4>Second Function - rewrite()</h4>
 
 You could use this function to do the same effect but different text at same element.
 
