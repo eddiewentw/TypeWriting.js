@@ -18,6 +18,8 @@ At second parameter, you can set some options.
 	<li>cursor_color: the color of the cursor</li>
 <ul>
 
+
+
 Third parameter is the function after typing effect.
 
 ```javascript
