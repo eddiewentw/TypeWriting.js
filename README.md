@@ -13,3 +13,11 @@ $('.string').typewriting( "Text here", {
 });
 
 ```
+
+```javascript
+
+$('.string').rewrite( "Another text here", function() {
+	console.log( "Ya" );
+});
+
+```
