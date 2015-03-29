@@ -27,7 +27,7 @@ $('.string').typewriting( "Text here", {
 	"blink_interval": "1.5s"
 	"cursor_color": "white"
 }, function() {
-	console.log( "Do this function after typing" );
+	console.log( "End." );
 });
 
 ```
@@ -39,7 +39,7 @@ You could use this function to do the same effect but different text at same ele
 ```javascript
 
 $('.string').rewrite( "Another text here", function() {
-	console.log( "Ya" );
+	console.log( "End, 2." );
 });
 
 ```
