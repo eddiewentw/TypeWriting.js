@@ -10,7 +10,7 @@ If you want to make the typeing effect, this is what you need.
 
 Put the text as first parameter.
 
-At second parameter, you can set some options.
+With second parameter, you can set some options.
 
 <ul>
 	<li>typing_interval: the interval between each text</li>
