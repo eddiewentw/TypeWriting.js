@@ -2,7 +2,7 @@
 
 If you want to make the typeing effect, this is what you need.
 
-[DEMO page](http://eddiewen-taiwan.github.io/typewriting/)
+[DEMO page](http://eddiewen-taiwan.github.io/typewriting.js/)
 
 ******************************
 
