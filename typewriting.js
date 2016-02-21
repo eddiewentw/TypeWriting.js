@@ -76,7 +76,7 @@
 	}
 
 	function _getText() {
-		return setting.inputString.slice( 0, currentNumber++ );
+		return setting.inputString.slice( 0, ++currentNumber );
 	}
 
 }(jQuery));
