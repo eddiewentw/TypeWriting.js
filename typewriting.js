@@ -4,7 +4,7 @@
 					打 字 機
 	\* ---------------------------------- */
 
-	var currentNumber;
+	var currentNumber = 0;
 	var setting;
 	var callback;
 
@@ -12,11 +12,11 @@
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
+		// Get the height of cursor should be
 		this.text("A");
 		var cursorHeight = this.height();
 		this.text("");
 
-		currentNumber = 0;
 		setting = $.extend({
 			typing_interval	: 150,
 			blink_interval	: "0.7s",
