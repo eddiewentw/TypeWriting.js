@@ -13,7 +13,7 @@
 
 		// Get the height of cursor should be
 		this.text('A');
-		var cursorHeight = this.height();
+		const cursorHeight = this.height();
 		this.text('');
 
 		// Store setting and function from user
@@ -44,7 +44,7 @@
 		}
 
 		// Add cursor style in HEAD
-		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${setting.cursor_color};-webkit-animation:blink ${setting.blink_interval} infinite;-moz-animation:blink ${setting.blink_interval} infinite;animation:blink ${setting.blink_interval} infinite}</style>` );
+		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
 
 		_typingGo( this.addClass('typingCursor') );
 
