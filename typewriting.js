@@ -35,7 +35,7 @@
 
 		target = this.addClass("typingCursor");
 
-		typingGo();
+		_typingGo();
 
 	};
 
@@ -45,15 +45,15 @@
 		inputString = input_string;
 		callback = callback_func;
 
-		typingGo();
+		_typingGo();
 
 	}
 
-	function typingGo() {
+	function _typingGo() {
 
 		if( currentNumber <= inputString.length ) {
 
-			var thisText = getText();
+			var thisText = _getText();
 
 			if( thisText.slice(-1) == "<" ) inHtmlTag = true;
 			if( thisText.slice(-1) == ">" ) inHtmlTag = false;
@@ -61,10 +61,10 @@
 			target.html( thisText );
 
 			if( inHtmlTag )
-				typingGo();
+				_typingGo();
 			else
 				setTimeout( function(){
-					typingGo();
+					_typingGo();
 				}, setting.typing_interval);
 
 		} else {
@@ -72,7 +72,7 @@
 		}
 	}
 
-	function getText() {
+	function _getText() {
 		var returnString = inputString.slice( 0, currentNumber );
 		currentNumber++;
 		return returnString;
