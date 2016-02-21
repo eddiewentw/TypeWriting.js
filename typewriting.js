@@ -51,20 +51,28 @@
 
 			var thisText = _getText();
 
-			if( thisText.slice(-1) == "<" ) inHtmlTag = true;
-			if( thisText.slice(-1) == ">" ) inHtmlTag = false;
+			if( thisText.slice(-1) == "<" ) {
+				inHtmlTag = true;
+			}
+			else if( thisText.slice(-1) == ">" ) {
+				inHtmlTag = false;
+			}
 
 			target.html( thisText );
 
 			if( inHtmlTag )
 				_typingGo();
-			else
+			else {
 				setTimeout( function(){
 					_typingGo();
 				}, setting.typing_interval);
+			}
 
-		} else {
-			if( callback ) callback();
+		}
+		else {
+			if( callback ) {
+				callback();
+			}
 		}
 	}
 
