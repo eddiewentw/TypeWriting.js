@@ -4,8 +4,6 @@
 					打 字 機
 	\* ---------------------------------- */
 
-	var part1 = '@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}';
-
 	var target;
 	var currentNumber;
 	var inputString = "";
@@ -29,9 +27,7 @@
 		}, options);
 		callback = callback_func;
 
-		var part2 = `.typingCursor::after{content:"";width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${setting.cursor_color};-webkit-animation:blink ${setting.blink_interval} infinite;-moz-animation:blink ${setting.blink_interval} infinite;animation:blink ${setting.blink_interval} infinite}`;
-
-		$('head').append( `<style type="text/css">${ part1 + part2 }</style>` );
+		$('head').append( `<style type="text/css">@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:"";width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${setting.cursor_color};-webkit-animation:blink ${setting.blink_interval} infinite;-moz-animation:blink ${setting.blink_interval} infinite;animation:blink ${setting.blink_interval} infinite}</style>` );
 
 		target = this.addClass("typingCursor");
 
