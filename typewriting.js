@@ -52,9 +52,25 @@
 
 	$.fn.rewrite = function( input_string, callback_func ) {
 
-		// Store setting and function from user
-		settings.inputString = input_string;
-		settings.callback = callback_func;
+		// Handle inputString ---required
+		if( input_string ) {
+			if( typeof input_string == 'string' )
+				settings.inputString = input_string;
+			else
+				throw new Error(`${input_string} is not a string`);
+		}
+		else
+			throw new Error('Missing argument: String');
+
+		// Handle callback
+		if( callback_func ) {
+			if( typeof callback_func == 'function' )
+				settings.callback = callback_func;
+			else
+				throw new Error(`${callback_func} is not a function`);
+		}
+		else
+			settings.callback = function(){};
 
 		_typingGo( this );
 
