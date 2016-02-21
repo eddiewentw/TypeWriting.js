@@ -27,25 +27,20 @@
 
 		// Handle inputString ---required
 		if( input_string ) {
-			if( typeof input_string == 'string' ) {
+			if( typeof input_string == 'string' )
 				setting.inputString = input_string;
-			}
-			else {
+			else
 				throw new Error(`${input_string} is not a string`);
-			}
 		}
-		else {
+		else
 			throw new Error('Missing argument: String');
-		}
 
 		// Handle callback
 		if( callback_func ) {
-			if( typeof callback_func == 'function' ) {
+			if( typeof callback_func == 'function' )
 				setting.callback = callback_func;
-			}
-			else {
+			else
 				throw new Error(`${callback_func} is not a function`);
-			}
 		}
 
 		// Add cursor style in HEAD
