@@ -25,11 +25,13 @@
 			callback 		: function(){},
 		}, options);
 		setting.inputString = input_string;
-		if( typeof callback_func == 'function' ) {
-			setting.callback = callback_func;
-		}
-		else {
-			throw new Error(`${callback_func} is not a function`);
+		if( callback_func ) {
+			if( typeof callback_func == 'function' ) {
+				setting.callback = callback_func;
+			}
+			else {
+				throw new Error(`${callback_func} is not a function`);
+			}
 		}
 
 		// Add cursor style in HEAD
