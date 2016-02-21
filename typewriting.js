@@ -5,7 +5,7 @@
 	\* ---------------------------------- */
 
 	var _currentNumber = 0;
-	var setting;
+	var settings;
 
 	var _inHTMLTag = false;
 
@@ -17,7 +17,7 @@
 		this.text('');
 
 		// Store setting and function from user
-		setting = $.extend({
+		settings = $.extend({
 			typing_interval	: 150,
 			blink_interval	: '0.7s',
 			cursor_color	: 'black',
@@ -28,7 +28,7 @@
 		// Handle inputString ---required
 		if( input_string ) {
 			if( typeof input_string == 'string' )
-				setting.inputString = input_string;
+				settings.inputString = input_string;
 			else
 				throw new Error(`${input_string} is not a string`);
 		}
@@ -38,7 +38,7 @@
 		// Handle callback
 		if( callback_func ) {
 			if( typeof callback_func == 'function' )
-				setting.callback = callback_func;
+				settings.callback = callback_func;
 			else
 				throw new Error(`${callback_func} is not a function`);
 		}
@@ -53,8 +53,8 @@
 	$.fn.rewrite = function( input_string, callback_func ) {
 
 		// Store setting and function from user
-		setting.inputString = input_string;
-		setting.callback = callback_func;
+		settings.inputString = input_string;
+		settings.callback = callback_func;
 
 		_typingGo( this );
 
@@ -62,7 +62,7 @@
 
 	function _typingGo( target ) {
 
-		if( _currentNumber <= setting.inputString.length ) {
+		if( _currentNumber <= settings.inputString.length ) {
 
 			const thisText = _getText();
 
@@ -78,20 +78,20 @@
 			if( _inHTMLTag )
 				_typingGo( target );
 			else {
-				setTimeout( function(){
+				setTimeout( function() {
 					_typingGo( target );
-				}, setting.typing_interval);
+				}, settings.typing_interval);
 			}
 
 		}
 		else {
 			_currentNumber = 0;
-			setting.callback.call(this);
+			settings.callback.call(this);
 		}
 	}
 
 	function _getText() {
-		return setting.inputString.slice( 0, ++_currentNumber );
+		return settings.inputString.slice( 0, ++_currentNumber );
 	}
 
 }(jQuery));
