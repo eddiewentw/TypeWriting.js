@@ -29,7 +29,7 @@
 			setting.callback = callback_func;
 		}
 		else {
-			throw 'It is not a function';
+			throw new Error(`${callback_func} is not a function`);
 		}
 
 		// Add cursor style in HEAD
