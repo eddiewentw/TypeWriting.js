@@ -23,7 +23,7 @@
 			cursor_color	: 'black',
 			inputString 	: '',
 			callback 		: function(){},
-			task_status 	: 'unready',
+			task			: 'unready',
 		}, options);
 
 		// Handle inputString ---required
@@ -47,7 +47,7 @@
 		// Add cursor style in HEAD
 		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
 
-		settings.task_status = 'ready';
+		settings.task = 'typing';
 		_typingGo( this.addClass('typingCursor') );
 
 	};
@@ -73,6 +73,10 @@
 		}
 		else
 			settings.callback = function(){};
+
+		if( settings.task == 'typing' ) {
+			console.warn( 'Last task is not finished yet.' );
+		}
 
 		_typingGo( this );
 
@@ -103,6 +107,7 @@
 
 		}
 		else {
+			settings.task = 'ready';
 			_currentNumber = 0;
 			settings.callback.call(this);
 		}
