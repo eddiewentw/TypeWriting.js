@@ -53,7 +53,6 @@
 	$.fn.rewrite = function( input_string, callback_func ) {
 
 		// Store setting and function from user
-		_currentNumber = 0;
 		setting.inputString = input_string;
 		setting.callback = callback_func;
 
@@ -86,6 +85,7 @@
 
 		}
 		else {
+			_currentNumber = 0;
 			setting.callback.call(this);
 		}
 	}
