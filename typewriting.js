@@ -17,6 +17,7 @@
 		var cursorHeight = this.height();
 		this.text("");
 
+		// Store setting and function from user
 		setting = $.extend({
 			typing_interval	: 150,
 			blink_interval	: "0.7s",
@@ -26,6 +27,7 @@
 		setting.inputString = input_string;
 		callback = callback_func;
 
+		// Add cursor style in HEAD
 		$('head').append( `<style type="text/css">@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:"";width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${setting.cursor_color};-webkit-animation:blink ${setting.blink_interval} infinite;-moz-animation:blink ${setting.blink_interval} infinite;animation:blink ${setting.blink_interval} infinite}</style>` );
 
 		_typingGo( this.addClass("typingCursor") );
@@ -34,6 +36,7 @@
 
 	$.fn.rewrite = function( input_string, callback_func ) {
 
+		// Store setting and function from user
 		currentNumber = 0;
 		setting.inputString = input_string;
 		callback = callback_func;
@@ -74,9 +77,7 @@
 	}
 
 	function _getText() {
-		var returnString = setting.inputString.slice( 0, currentNumber );
-		currentNumber++;
-		return returnString;
+		return setting.inputString.slice( 0, currentNumber++ );
 	}
 
 }(jQuery));
