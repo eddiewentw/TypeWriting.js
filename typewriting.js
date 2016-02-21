@@ -21,9 +21,9 @@
 		currentNumber = 0;
 		inputString = input_string;
 		setting = $.extend({
-			typing_interval: 150,
-			blink_interval: "0.7s",
-			cursor_color: "black"
+			typing_interval	: 150,
+			blink_interval	: "0.7s",
+			cursor_color	: "black"
 		}, options);
 		callback = callback_func;
 
