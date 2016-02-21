@@ -64,7 +64,7 @@
 
 		if( _currentNumber <= setting.inputString.length ) {
 
-			var thisText = _getText();
+			const thisText = _getText();
 
 			if( thisText.slice(-1) == '<' ) {
 				_inHTMLTag = true;
