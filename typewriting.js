@@ -7,7 +7,7 @@
 	var currentNumber = 0;
 	var setting;
 
-	var inHtmlTag;
+	var inHtmlTag = false;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
@@ -66,7 +66,6 @@
 		if( currentNumber <= setting.inputString.length ) {
 
 			var thisText = _getText();
-			var inHtmlTag = false;
 
 			if( thisText.slice(-1) == '<' ) {
 				inHtmlTag = true;
