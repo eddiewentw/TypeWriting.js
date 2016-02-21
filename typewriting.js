@@ -25,7 +25,12 @@
 			callback 		: function(){},
 		}, options);
 		setting.inputString = input_string;
-		setting.callback = callback_func;
+		if( typeof callback_func == 'function' ) {
+			setting.callback = callback_func;
+		}
+		else {
+			throw 'It is not a function';
+		}
 
 		// Add cursor style in HEAD
 		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${setting.cursor_color};-webkit-animation:blink ${setting.blink_interval} infinite;-moz-animation:blink ${setting.blink_interval} infinite;animation:blink ${setting.blink_interval} infinite}</style>` );
