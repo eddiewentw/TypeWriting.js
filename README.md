@@ -10,7 +10,7 @@ If you want to make the typeing effect, this is what you need.
 	<!-- jQuery -->
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<!-- just typewriting.js or .min.js -->
-	<script type="text/javascript" src="typewriting/typewriting.min.js"></script>
+	<script type="text/javascript" src="path/typewriting.min.js"></script>
 ~~~
 I use `$('.string').height` to set the cursor height. You could use its line-height to control cursor height. 
 
