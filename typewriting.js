@@ -4,10 +4,10 @@
 					打 字 機
 	\* ---------------------------------- */
 
-	var currentNumber = 0;
+	var _currentNumber = 0;
 	var setting;
 
-	var inHtmlTag = false;
+	var _inHTMLTag = false;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
@@ -53,7 +53,7 @@
 	$.fn.rewrite = function( input_string, callback_func ) {
 
 		// Store setting and function from user
-		currentNumber = 0;
+		_currentNumber = 0;
 		setting.inputString = input_string;
 		setting.callback = callback_func;
 
@@ -63,20 +63,20 @@
 
 	function _typingGo( target ) {
 
-		if( currentNumber <= setting.inputString.length ) {
+		if( _currentNumber <= setting.inputString.length ) {
 
 			var thisText = _getText();
 
 			if( thisText.slice(-1) == '<' ) {
-				inHtmlTag = true;
+				_inHTMLTag = true;
 			}
 			else if( thisText.slice(-1) == '>' ) {
-				inHtmlTag = false;
+				_inHTMLTag = false;
 			}
 
 			target.html( thisText );
 
-			if( inHtmlTag )
+			if( _inHTMLTag )
 				_typingGo( target );
 			else {
 				setTimeout( function(){
@@ -91,7 +91,7 @@
 	}
 
 	function _getText() {
-		return setting.inputString.slice( 0, ++currentNumber );
+		return setting.inputString.slice( 0, ++_currentNumber );
 	}
 
 }(jQuery));
