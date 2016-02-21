@@ -29,7 +29,7 @@
 		}, options);
 		callback = callback_func;
 
-		var part2 = '.typingCursor::after{content:"";width:10px;height:' + cursorHeight + 'px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:' + setting.cursor_color + ';-webkit-animation:blink ' + setting.blink_interval + ' infinite;-moz-animation:blink ' + setting.blink_interval + ' infinite;animation:blink ' + setting.blink_interval + ' infinite}';
+		var part2 = `.typingCursor::after{content:"";width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${setting.cursor_color};-webkit-animation:blink ${setting.blink_interval} infinite;-moz-animation:blink ${setting.blink_interval} infinite;animation:blink ${setting.blink_interval} infinite}`;
 
 		$('head').append( '<style type="text/css">' + part1 + part2 + '</style>' );
 
