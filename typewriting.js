@@ -6,7 +6,6 @@
 
 	var currentNumber = 0;
 	var setting;
-	var callback;
 
 	var inHtmlTag;
 
@@ -23,9 +22,10 @@
 			blink_interval	: '0.7s',
 			cursor_color	: 'black',
 			inputString 	: '',
+			callback 		: function(){},
 		}, options);
 		setting.inputString = input_string;
-		callback = callback_func;
+		setting.callback = callback_func;
 
 		// Add cursor style in HEAD
 		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${setting.cursor_color};-webkit-animation:blink ${setting.blink_interval} infinite;-moz-animation:blink ${setting.blink_interval} infinite;animation:blink ${setting.blink_interval} infinite}</style>` );
@@ -39,7 +39,7 @@
 		// Store setting and function from user
 		currentNumber = 0;
 		setting.inputString = input_string;
-		callback = callback_func;
+		setting.callback = callback_func;
 
 		_typingGo( this );
 
@@ -50,6 +50,7 @@
 		if( currentNumber <= setting.inputString.length ) {
 
 			var thisText = _getText();
+			var inHtmlTag = false;
 
 			if( thisText.slice(-1) == '<' ) {
 				inHtmlTag = true;
@@ -70,9 +71,7 @@
 
 		}
 		else {
-			if( callback ) {
-				callback();
-			}
+			setting.callback.call(this);
 		}
 	}
 
