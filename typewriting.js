@@ -71,7 +71,7 @@
 				if( typeof input_string == 'string' )
 					settings.inputString = input_string;
 				else
-					throw new Error(`${input_string} is not a string`);
+					console.error(`${input_string} is not a string`);
 			}
 			else
 				throw new Error('Missing argument: String');
