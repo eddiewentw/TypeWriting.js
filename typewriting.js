@@ -12,8 +12,10 @@
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
 		// Get the height of cursor should be
-		this.text('A');
+		const width = this.width();
+		this.text('I');
 		const cursorHeight = this.height();
+		const cursorWidth = this.width()-width;
 		this.text('');
 
 		// Store setting and function from user
@@ -46,7 +48,7 @@
 			settings.tw_callback = function(){};
 
 		// Add cursor style in HEAD
-		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
+		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
 
 		settings.task = 'typing';
 		_typingGo( this.addClass('typingCursor') );
