@@ -91,7 +91,7 @@
 
 	function _typingGo( target, _from ) {
 
-		if( _currentNumber <= settings.inputString.length ) {
+		if( _currentNumber < settings.inputString.length ) {
 
 			const thisText = _getText();
 
