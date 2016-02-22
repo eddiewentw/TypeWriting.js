@@ -56,32 +56,36 @@
 
 	$.fn.rewrite = function( input_string, callback_func ) {
 
-		// Handle inputString ---required
-		if( input_string ) {
-			if( typeof input_string == 'string' )
-				settings.inputString = input_string;
-			else
-				throw new Error(`${input_string} is not a string`);
-		}
-		else
-			throw new Error('Missing argument: String');
-
-		// Handle callback
-		if( callback_func ) {
-			if( typeof callback_func == 'function' )
-				settings.rewrite_callback = callback_func;
-			else
-				throw new Error(`${callback_func} is not a function`);
-		}
-		else
-			settings.rewrite_callback = function(){};
-
 		if( settings.task == 'typing' ) {
 			console.warn( 'Last task is not finished yet.' );
+			setTimeout( function(){
+				$.fn.rewrite( input_string, callback_func );
+			}.bind(this), settings.typing_interval );
 		}
+		else {
+			// Handle inputString ---required
+			if( input_string ) {
+				if( typeof input_string == 'string' )
+					settings.inputString = input_string;
+				else
+					throw new Error(`${input_string} is not a string`);
+			}
+			else
+				throw new Error('Missing argument: String');
 
-		settings.task = 'typing';
-		_typingGo( this, 'rewrite' );
+			// Handle callback
+			if( callback_func ) {
+				if( typeof callback_func == 'function' )
+					settings.rewrite_callback = callback_func;
+				else
+					throw new Error(`${callback_func} is not a function`);
+			}
+			else
+				settings.rewrite_callback = function(){};
+
+			settings.task = 'typing';
+			_typingGo( this, 'rewrite' );
+		}
 
 	}
 
