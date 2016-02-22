@@ -5,7 +5,7 @@ If you want to make the typeing effect, this is what you need.
 [TypeWriting DEMO](http://github.eddiewen.me/TypeWriting.js/)
 
 ----
-###Setup
+### Setup
 ~~~html
 	<!-- jQuery -->
 	<script type="text/javascript" src="jquery.min.js"></script>
@@ -16,12 +16,12 @@ I use `$('.string').height` to set the cursor height. You could use its line-hei
 
 ----
 
-###`typewriting()`
+### `typewriting()`
 
 Put the text you want as first parameter.  
 With second parameter, you can set some options.
 
-* typing_interval: the interval between each text
+* typing_interval: the interval between each character
 * blink_interval: the interval of the cursor blinks
 * cursor_color: the color of the cursor
 
@@ -37,7 +37,7 @@ $('.string').typewriting( "Text here", {
 });
 ~~~
 
-###`rewrite()`
+### `rewrite()`
 
 You could use this function to do the same effect but different text at same element.
 
