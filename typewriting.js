@@ -22,8 +22,7 @@
 			blink_interval	: '0.7s',
 			cursor_color	: 'black',
 			inputString 	: '',
-			init_callback	: function(){},
-			rewrite_callback: function(){},
+			tw_callback		: function(){},
 			task			: 'unready',
 		}, options);
 
@@ -40,17 +39,17 @@
 		// Handle callback
 		if( callback_func ) {
 			if( typeof callback_func == 'function' )
-				settings.init_callback = callback_func;
+				settings.tw_callback = callback_func;
 			else
 				throw new Error(`${callback_func} is not a function`);
 		} else
-			settings.init_callback = function(){};
+			settings.tw_callback = function(){};
 
 		// Add cursor style in HEAD
 		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
 
 		settings.task = 'typing';
-		_typingGo( this.addClass('typingCursor'), 'init' );
+		_typingGo( this.addClass('typingCursor') );
 
 	};
 
@@ -76,20 +75,20 @@
 			// Handle callback
 			if( callback_func ) {
 				if( typeof callback_func == 'function' )
-					settings.rewrite_callback = callback_func;
+					settings.tw_callback = callback_func;
 				else
 					throw new Error(`${callback_func} is not a function`);
 			}
 			else
-				settings.rewrite_callback = function(){};
+				settings.tw_callback = function(){};
 
 			settings.task = 'typing';
-			_typingGo( this, 'rewrite' );
+			_typingGo( this );
 		}
 
 	}
 
-	function _typingGo( target, _from ) {
+	function _typingGo( target ) {
 
 		if( _currentNumber < settings.inputString.length ) {
 
@@ -105,10 +104,10 @@
 			target.html( thisText );
 
 			if( _inHTMLTag )
-				_typingGo( target, _from );
+				_typingGo( target );
 			else {
 				setTimeout( function() {
-					_typingGo( target, _from );
+					_typingGo( target );
 				}, settings.typing_interval);
 			}
 
@@ -116,10 +115,7 @@
 		else {
 			settings.task = 'ready';
 			_currentNumber = 0;
-			if( _from == 'init' )
-				settings.init_callback.call(this);
-			else
-				settings.rewrite_callback.call(this);
+			settings.tw_callback.call(this);
 		}
 	}
 
