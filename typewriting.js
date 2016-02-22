@@ -42,10 +42,12 @@
 		if( callback_func ) {
 			if( typeof callback_func == 'function' )
 				settings.tw_callback = callback_func;
-			else
-				throw new Error(`${callback_func} is not a function`);
+			else {
+				console.error(`${callback_func} is not a function`);
+				_cleanCallback();
+			}
 		} else
-			settings.tw_callback = function(){};
+			_cleanCallback();
 
 		// Add cursor style in HEAD
 		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
@@ -78,11 +80,13 @@
 			if( callback_func ) {
 				if( typeof callback_func == 'function' )
 					settings.tw_callback = callback_func;
-				else
+				else {
 					throw new Error(`${callback_func} is not a function`);
+					_cleanCallback();
+				}
 			}
 			else
-				settings.tw_callback = function(){};
+				_cleanCallback();
 
 			settings.task = 'typing';
 			_typingGo( this );
@@ -123,6 +127,10 @@
 
 	function _getText() {
 		return settings.inputString.slice( 0, ++_currentNumber );
+	}
+
+	function _cleanCallback() {
+		settings.tw_callback = function(){};
 	}
 
 }(jQuery));
