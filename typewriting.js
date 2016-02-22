@@ -50,7 +50,7 @@
 		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
 
 		settings.task = 'typing';
-		_typingGo( this.addClass('typingCursor') );
+		_typingGo( this.addClass('typingCursor'), 'init' );
 
 	};
 
@@ -81,11 +81,11 @@
 		}
 
 		settings.task = 'typing';
-		_typingGo( this );
+		_typingGo( this, 'rewrite' );
 
 	}
 
-	function _typingGo( target ) {
+	function _typingGo( target, _from ) {
 
 		if( _currentNumber <= settings.inputString.length ) {
 
@@ -101,10 +101,10 @@
 			target.html( thisText );
 
 			if( _inHTMLTag )
-				_typingGo( target );
+				_typingGo( target, _from );
 			else {
 				setTimeout( function() {
-					_typingGo( target );
+					_typingGo( target, _from );
 				}, settings.typing_interval);
 			}
 
@@ -112,7 +112,10 @@
 		else {
 			settings.task = 'ready';
 			_currentNumber = 0;
-			settings.callback.call(this);
+			if( _from == 'init' )
+				settings.init_callback.call(this);
+			else
+				settings.rewrite_callback.call(this);
 		}
 	}
 
