@@ -80,6 +80,7 @@
 			console.warn( 'Last task is not finished yet.' );
 		}
 
+		settings.task = 'typing';
 		_typingGo( this );
 
 	}
