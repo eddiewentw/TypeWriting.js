@@ -58,8 +58,8 @@
 
 		if( settings.task == 'typing' ) {
 			console.warn( 'Last task is not finished yet.' );
-			setTimeout( function(){
-				$.fn.rewrite( input_string, callback_func );
+			setTimeout( function() {
+				this.rewrite( input_string, callback_func );
 			}.bind(this), settings.typing_interval );
 		}
 		else {
