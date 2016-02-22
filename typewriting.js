@@ -22,7 +22,8 @@
 			blink_interval	: '0.7s',
 			cursor_color	: 'black',
 			inputString 	: '',
-			callback 		: function(){},
+			init_callback	: function(){},
+			rewrite_callback: function(){},
 			task			: 'unready',
 		}, options);
 
@@ -39,10 +40,11 @@
 		// Handle callback
 		if( callback_func ) {
 			if( typeof callback_func == 'function' )
-				settings.callback = callback_func;
+				settings.init_callback = callback_func;
 			else
 				throw new Error(`${callback_func} is not a function`);
-		}
+		} else
+			settings.init_callback = function(){};
 
 		// Add cursor style in HEAD
 		$('head').append( `<style type='text/css'>@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:10px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}</style>` );
@@ -67,12 +69,12 @@
 		// Handle callback
 		if( callback_func ) {
 			if( typeof callback_func == 'function' )
-				settings.callback = callback_func;
+				settings.rewrite_callback = callback_func;
 			else
 				throw new Error(`${callback_func} is not a function`);
 		}
 		else
-			settings.callback = function(){};
+			settings.rewrite_callback = function(){};
 
 		if( settings.task == 'typing' ) {
 			console.warn( 'Last task is not finished yet.' );
