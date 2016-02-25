@@ -5,6 +5,15 @@ If you want to make the typeing effect, this is what you need.
 [TypeWriting DEMO](http://github.eddiewen.me/TypeWriting.js/)
 
 ----
+### Installation
+
+Just clone or download the zip of this repository
+
+or via [npm](https://www.npmjs.com/package/typewriting):
+
+~~~shell
+npm install --save typewriting
+~~~
 
 ### Setup
 
