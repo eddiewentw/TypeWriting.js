@@ -4,19 +4,16 @@
 					打 字 機
 	\* ---------------------------------- */
 
-	var _currentNumber = 0;
 	var settings;
 
+	var _currentNumber = 0;
 	var _inHTMLTag = false;
 
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
 		// Get the height of cursor should be
-		const width = this.width();
-		this.text('I');
 		const cursorHeight = this.height();
-		const cursorWidth = this.width()-width;
-		this.text('');
+		const cursorWidth = parseInt(cursorHeight/3);
 
 		// Store setting and function from user
 		settings = $.extend({
