@@ -24,7 +24,7 @@ npm install --save typewriting
 <script type="text/javascript" src="path/to/typewriting.min.js"></script>
 ~~~
 
-I use the height of targetElement to set the cursor height. You could use its line-height to control cursor height. 
+I use the height of targetElement to set the cursor height. You could use its line-height to control cursor height.
 
 ----
 
