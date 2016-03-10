@@ -59,7 +59,7 @@
 		// add CSS style in HEAD
 		head.appendChild(styleNode);
 
-		this.settings.targetElement.className += 'typingCursor';
+		this.settings.targetElement.className += ' typingCursor';
 		this.settings.task = 'typing';
 		_typingGo.call(this);
 
