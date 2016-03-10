@@ -28,16 +28,20 @@ I use the height of targetElement to set the cursor height. You could use its li
 
 ----
 
-### `Init`
+### `TypeWriting`
 
-~~Put the text you want as first parameter.  
-With second parameter, you can set some options.~~
+* __targetElement__: _HTML element_ `required`  
+Your element
+* __inputString__: _String_ `required`  
+Your text
+* __typing_interval__: _Int_  
+Interval between each character
+* __blink_interval__: _String_  
+Interval of the cursor blinks
+* __cursor_color__: _String_  
+Color of the cursor
 
-* typing_interval: the interval between each character
-* blink_interval: the interval of the cursor blinks
-* cursor_color: the color of the cursor
-
-Third parameter is the function after typing effect.
+Second parameter is the function after typing effect.
 
 ~~~javascript
 const typewriter = new TypeWriting({
