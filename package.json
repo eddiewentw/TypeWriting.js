@@ -1,6 +1,6 @@
 {
   "name": "typewriting",
-  "version": "1.1.2",
+  "version": "1.2",
   "description": "TypeWriting.js is a jQuery plugin to make a typewriter effect.",
   "repository": {
     "type": "git",
@@ -12,9 +12,6 @@
     "animation",
     "typing"
   ],
-  "dependencies": {
-    "jquery": ">=2.0.0"
-  },
   "author": "Eddie Wen <m20021991y@gmail.com> (http://eddiewen.me)",
   "homepage": "https://github.com/EddieWen-Taiwan/TypeWriting.js#readme"
 }
