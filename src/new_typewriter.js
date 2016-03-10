@@ -39,8 +39,13 @@
 			_cleanCallback.call(this);
 
 		// get the height of cursor should be
-		const cursorHeight = this.settings.targetElement.offsetHeight;
-		const cursorWidth = parseInt(cursorHeight/3);
+		var cursorHeight = this.settings.targetElement.offsetHeight;
+		var cursorWidth = parseInt(cursorHeight/3);
+		if( cursorHeight == 0 ) {
+			this.settings.targetElement.innerHTML = 'I';
+			cursorHeight = this.settings.targetElement.offsetHeight;
+			cursorWidth = this.settings.targetElement.offsetWidth;
+		}
 
 		// prepare cursor style
 		const head = document.head;
