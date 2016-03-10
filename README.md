@@ -40,12 +40,14 @@ With second parameter, you can set some options.~~
 Third parameter is the function after typing effect.
 
 ~~~javascript
-$('.string').typewriting( "Text here", {
-	"typing_interval": 300,
-	"blink_interval": "1.5s"
-	"cursor_color": "white"
+const typewriter = new TypeWriting({
+	targetElement	: document.getElementsByClassName('terminal')[0],
+	inputString		: 'Hello, world.',
+	typing_interval	: 130,
+	blink_interval	: '1s',
+	cursor_color	: '#00fd55',
 }, function() {
-	console.log( "End." );
+	console.log("END");
 });
 ~~~
 
@@ -54,7 +56,7 @@ $('.string').typewriting( "Text here", {
 You could use this function to do the same effect but different text at same element.
 
 ~~~javascript
-$('.string').rewrite( "Another text here", function() {
-	console.log( "End, 2." );
+typewriter.rewrite( "This is TypeWriting.js", function() {
+	console.log("Rewrite is finished");
 });
 ~~~
