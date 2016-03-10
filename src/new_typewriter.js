@@ -8,10 +8,10 @@
 
 		var settings = {
 			targetElement	: null,
+			inputString 	: '',
 			typing_interval	: 150,
 			blink_interval	: '0.7s',
 			cursor_color	: 'black',
-			inputString 	: '',
 			tw_callback		: function(){},
 			task			: 'unready',
 		}
@@ -129,7 +129,7 @@
 		else {
 			this.settings.task = 'ready';
 			this._currentNumber = 0;
-			this.settings.tw_callback.call(this);
+			this.settings.tw_callback.call();
 		}
 
 	}
