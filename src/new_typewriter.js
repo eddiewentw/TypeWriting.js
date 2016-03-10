@@ -29,7 +29,9 @@
 
 		// check callback
 		if( callback_func ) {
-			if( typeof callback_func !== 'function' ) {
+			if( typeof callback_func === 'function' )
+				this.settings.tw_callback = callback_func;
+			else {
 				console.error(`${callback_func} is not a function`);
 				_cleanCallback.call(this);
 			}
@@ -52,12 +54,79 @@
 		// add CSS style in HEAD
 		head.appendChild(styleNode);
 
+		this.settings.targetElement.className += 'typingCursor';
 		this.settings.task = 'typing';
+		_typingGo.call(this);
 
 	}
 
-	TypeWriter.prototype.rewrite = function() {
-		console.log(this.settings);
+	TypeWriter.prototype.rewrite = function( input_string, callback_func ) {
+
+		if( this.settings.task == 'typing' ) {
+			console.warn( 'Last task is not finished yet.' );
+			setTimeout( function() {
+				this.rewrite( input_string, callback_func );
+			}.bind(this), this.settings.typing_interval );
+		}
+		else {
+			// Handle inputString ---required
+			if( input_string ) {
+				if( typeof input_string == 'string' )
+					this.settings.inputString = input_string;
+				else
+					console.error(`${input_string} is not a string`);
+			}
+			else
+				throw new Error('Missing argument: String');
+
+			// Handle callback
+			if( callback_func ) {
+				if( typeof callback_func == 'function' )
+					this.settings.tw_callback = callback_func;
+				else {
+					throw new Error(`${callback_func} is not a function`);
+					_cleanCallback.call(this);
+				}
+			}
+			else
+				_cleanCallback.call(this);
+
+			this.settings.task = 'typing';
+			_typingGo.call(this);
+		}
+
+	}
+
+	function _typingGo() {
+
+		if( this._currentNumber < this.settings.inputString.length ) {
+
+			const thisText = _getText.call(this);
+
+			if( thisText.slice(-1) == '<' ) {
+				this._inHTMLTag = true;
+			}
+			else if( thisText.slice(-1) == '>' ) {
+				this._inHTMLTag = false;
+			}
+
+			this.settings.targetElement.innerHTML = thisText;
+
+			if( this._inHTMLTag )
+				_typingGo.call(this);
+			else {
+				setTimeout( function() {
+					_typingGo.call(this);
+				}.bind(this), this.settings.typing_interval);
+			}
+
+		}
+		else {
+			this.settings.task = 'ready';
+			this._currentNumber = 0;
+			this.settings.tw_callback.call(this);
+		}
+
 	}
 
 	function _getText() {
