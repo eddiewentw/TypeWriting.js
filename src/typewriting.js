@@ -65,7 +65,7 @@
 
 	}
 
-	TypeWriter.prototype.rewrite = function( input_string, callback_func ) {
+	TypeWriting.prototype.rewrite = function( input_string, callback_func ) {
 
 		if( this.settings.task == 'typing' ) {
 			console.warn( 'Last task is not finished yet.' );
