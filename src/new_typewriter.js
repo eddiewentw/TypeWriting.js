@@ -25,7 +25,7 @@
 				throw new Error(`${options.inputString} is not a string`);
 		}
 		else
-			throw new Error('Missing argument: String');
+			throw new Error('Missing argument: inputString');
 
 		// check callback
 		if( callback_func ) {
@@ -82,7 +82,7 @@
 					console.error(`${input_string} is not a string`);
 			}
 			else
-				throw new Error('Missing argument: String');
+				throw new Error('Missing argument: inputString');
 
 			// Handle callback
 			if( callback_func ) {
