@@ -28,7 +28,7 @@ I use the height of targetElement to set the cursor height. You could use its li
 
 ----
 
-### `TypeWriting`
+### `TypeWriting()`
 
 * __targetElement__: _HTML element_ `required`  
 Your element
@@ -44,7 +44,7 @@ Color of the cursor
 Second parameter is the function after typing effect.
 
 ~~~javascript
-const typewriter = new TypeWriting({
+var typeWriting = new TypeWriting({
 	targetElement	: document.getElementsByClassName('terminal')[0],
 	inputString		: 'Hello, world.',
 	typing_interval	: 130,
@@ -60,7 +60,7 @@ const typewriter = new TypeWriting({
 You could use this function to do the same effect but different text at same element.
 
 ~~~javascript
-typewriter.rewrite( "This is TypeWriting.js", function() {
+typeWriting.rewrite( "This is TypeWriting.js", function() {
 	console.log("Rewrite is finished");
 });
 ~~~
