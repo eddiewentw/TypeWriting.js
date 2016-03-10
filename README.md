@@ -4,6 +4,8 @@ If you want to make the typeing effect, this is what you need.
 
 [TypeWriting DEMO](http://github.eddiewen.me/TypeWriting.js/)
 
+_Note: TypeWriting.js doesn't depend on jQuery since version 1.2. If you want to keep the old version, please check another branch - [jQuery-v1.1.3](https://github.com/EddieWen-Taiwan/TypeWriting.js/tree/jQuery-v1.1.3)._
+
 ----
 ### Installation
 
@@ -18,20 +20,18 @@ npm install --save typewriting
 ### Setup
 
 ~~~html
-<!-- jQuery -->
-<script type="text/javascript" src="jquery.min.js"></script>
 <!-- just typewriting.js or .min.js -->
 <script type="text/javascript" src="path/to/typewriting.min.js"></script>
 ~~~
 
-I use `$('.string').height` to set the cursor height. You could use its line-height to control cursor height. 
+I use the height of targetElement to set the cursor height. You could use its line-height to control cursor height. 
 
 ----
 
-### `typewriting()`
+### `Init`
 
-Put the text you want as first parameter.  
-With second parameter, you can set some options.
+~~Put the text you want as first parameter.  
+With second parameter, you can set some options.~~
 
 * typing_interval: the interval between each character
 * blink_interval: the interval of the cursor blinks
