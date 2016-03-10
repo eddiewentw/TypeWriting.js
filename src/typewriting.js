@@ -12,8 +12,13 @@
 	$.fn.typewriting = function( input_string, options, callback_func ) {
 
 		// Get the height of cursor should be
-		const cursorHeight = this.height();
-		const cursorWidth = parseInt(cursorHeight/3);
+		var cursorHeight = this.height();
+		var cursorWidth = parseInt(cursorHeight/3);
+		if( cursorHeight == 0 ) {
+			this.text('I');
+			cursorHeight = this.height();
+			cursorWidth = this.width();
+		}
 
 		// Store setting and function from user
 		settings = $.extend({
