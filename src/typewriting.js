@@ -11,7 +11,10 @@
     root.TypeWriting = factory()
 }(this, function() {
 
-	var defaults = {
+	var _currentNumber = 0,
+	_inHTMLTag = false,
+
+	defaults = {
 		targetElement	: null,
 		inputString 	: '',
 		typing_interval	: 150,
@@ -23,20 +26,20 @@
 
 	_typingGo = function() {
 
-		if( this._currentNumber < defaults.inputString.length ) {
+		if( _currentNumber < defaults.inputString.length ) {
 
 			const thisText = _getText.call(this);
 
 			if( thisText.slice(-1) == '<' ) {
-				this._inHTMLTag = true;
+				_inHTMLTag = true;
 			}
 			else if( thisText.slice(-1) == '>' ) {
-				this._inHTMLTag = false;
+				_inHTMLTag = false;
 			}
 
 			defaults.targetElement.innerHTML = thisText;
 
-			if( this._inHTMLTag )
+			if( _inHTMLTag )
 				_typingGo.call(this);
 			else {
 				setTimeout( function() {
@@ -47,14 +50,14 @@
 		}
 		else {
 			defaults.task = 'ready';
-			this._currentNumber = 0;
+			_currentNumber = 0;
 			defaults.tw_callback.call();
 		}
 
 	},
 
 	_getText = function() {
-		return defaults.inputString.slice( 0, ++this._currentNumber );
+		return defaults.inputString.slice( 0, ++_currentNumber );
 	},
 
 	_cleanCallback = function() {
@@ -91,10 +94,6 @@ console.log(callback_func);
 // (function() {
 	
 // 	this.TypeWriting = function( options, callback_func ) {
-
-// 		// global variables
-// 		this._currentNumber = 0;
-// 		this._inHTMLTag = false;
 
 // 		var settings = {
 // 			targetElement	: null,
