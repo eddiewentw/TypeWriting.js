@@ -28,7 +28,7 @@
 
 		if( _currentNumber < defaults.inputString.length ) {
 
-			const thisText = _getText.call(this);
+			const thisText = _getText();
 
 			if( thisText.slice(-1) == '<' ) {
 				_inHTMLTag = true;
@@ -40,11 +40,11 @@
 			defaults.targetElement.innerHTML = thisText;
 
 			if( _inHTMLTag )
-				_typingGo.call(this);
+				_typingGo();
 			else {
 				setTimeout( function() {
-					_typingGo.call(this);
-				}.bind(this), defaults.typing_interval);
+					_typingGo();
+				}, defaults.typing_interval);
 			}
 
 		}
@@ -62,12 +62,24 @@
 
 	_cleanCallback = function() {
 		defaults.tw_callback = function(){};
+	},
+
+	// Utility method to extend defaults with user options
+	extendDefaults = function(source, properties) {
+		var property;
+		for( property in properties ) {
+			if( properties.hasOwnProperty(property) ) {
+				source[property] = properties[property];
+			}
+		}
+		return source;
 	};
 
 	/**
 	 * TypeWriting constructor
 	 */
 	var TypeWriting = function(options, callback_func) {
+
 		if( options && typeof options === "object" ) {
 			defaults = extendDefaults(defaults, options);
 		}
@@ -91,10 +103,10 @@
 				defaults.tw_callback = callback_func;
 			else {
 				console.error(`${callback_func} is not a function`);
-				_cleanCallback.call(this);
+				_cleanCallback();
 			}
 		} else
-			_cleanCallback.call(this);
+			_cleanCallback();
 
 		// get the height of cursor should be
 		var cursorHeight = defaults.targetElement.offsetHeight;
@@ -106,7 +118,7 @@
 		}
 
 		// prepare cursor style
-		const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}`;
+		const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${defaults.cursor_color};-webkit-animation:blink ${defaults.blink_interval} infinite;-moz-animation:blink ${defaults.blink_interval} infinite;animation:blink ${defaults.blink_interval} infinite}`;
 		var styleNode = document.createElement('style');
 			styleNode.type = 'text/css';
 		if( styleNode.styleSheet )
@@ -118,7 +130,7 @@
 
 		defaults.targetElement.className += ' typingCursor';
 		defaults.task = 'typing';
-		_typingGo.call(this);
+		_typingGo();
 
 	};
 
@@ -178,17 +190,6 @@
 // 			_typingGo.call(this);
 // 		}
 
-// 	}
-
-// 	// Utility method to extend defaults with user options
-// 	function extendDefaults(source, properties) {
-// 		var property;
-// 		for( property in properties ) {
-// 			if( properties.hasOwnProperty(property) ) {
-// 				source[property] = properties[property];
-// 			}
-// 		}
-// 		return source;
 // 	}
 
 // }());
