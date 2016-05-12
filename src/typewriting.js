@@ -7,8 +7,8 @@
 
 (function(root, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    root.TypeWriting = factory()
+	typeof define === 'function' && define.amd ? define(factory) :
+	root.TypeWriting = factory()
 }(this, function() {
 
 	var _currentNumber = 0,
