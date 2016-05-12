@@ -11,6 +11,18 @@
     root.TypeWriting = factory()
 }(this, function() {
 
+	var TypeWriting = function(options, callback_func) {
+console.log(options);
+console.log(callback_func);
+	}
+
+	TypeWriting.prototype.rewrite = function(input_string, callback_func) {
+console.log(input_string);
+console.log(callback_func);
+	}
+
+	return TypeWriting;
+
 }));
 
 // (function() {
