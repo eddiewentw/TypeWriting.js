@@ -19,6 +19,46 @@
 		cursor_color	: 'black',
 		tw_callback		: function(){},
 		task			: 'unready',
+	},
+
+	_typingGo = function() {
+
+		if( this._currentNumber < defaults.inputString.length ) {
+
+			const thisText = _getText.call(this);
+
+			if( thisText.slice(-1) == '<' ) {
+				this._inHTMLTag = true;
+			}
+			else if( thisText.slice(-1) == '>' ) {
+				this._inHTMLTag = false;
+			}
+
+			defaults.targetElement.innerHTML = thisText;
+
+			if( this._inHTMLTag )
+				_typingGo.call(this);
+			else {
+				setTimeout( function() {
+					_typingGo.call(this);
+				}.bind(this), defaults.typing_interval);
+			}
+
+		}
+		else {
+			defaults.task = 'ready';
+			this._currentNumber = 0;
+			defaults.tw_callback.call();
+		}
+
+	},
+
+	_getText = function() {
+		return defaults.inputString.slice( 0, ++this._currentNumber );
+	},
+
+	_cleanCallback = function() {
+		defaults.tw_callback = function(){};
 	};
 
 	/**
@@ -145,46 +185,6 @@ console.log(callback_func);
 // 			_typingGo.call(this);
 // 		}
 
-// 	}
-
-// 	function _typingGo() {
-
-// 		if( this._currentNumber < this.settings.inputString.length ) {
-
-// 			const thisText = _getText.call(this);
-
-// 			if( thisText.slice(-1) == '<' ) {
-// 				this._inHTMLTag = true;
-// 			}
-// 			else if( thisText.slice(-1) == '>' ) {
-// 				this._inHTMLTag = false;
-// 			}
-
-// 			this.settings.targetElement.innerHTML = thisText;
-
-// 			if( this._inHTMLTag )
-// 				_typingGo.call(this);
-// 			else {
-// 				setTimeout( function() {
-// 					_typingGo.call(this);
-// 				}.bind(this), this.settings.typing_interval);
-// 			}
-
-// 		}
-// 		else {
-// 			this.settings.task = 'ready';
-// 			this._currentNumber = 0;
-// 			this.settings.tw_callback.call();
-// 		}
-
-// 	}
-
-// 	function _getText() {
-// 		return this.settings.inputString.slice( 0, ++this._currentNumber );
-// 	}
-
-// 	function _cleanCallback() {
-// 		this.settings.tw_callback = function(){};
 // 	}
 
 // 	// Utility method to extend defaults with user options
