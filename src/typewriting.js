@@ -11,15 +11,33 @@
     root.TypeWriting = factory()
 }(this, function() {
 
+	var defaults = {
+		targetElement	: null,
+		inputString 	: '',
+		typing_interval	: 150,
+		blink_interval	: '0.7s',
+		cursor_color	: 'black',
+		tw_callback		: function(){},
+		task			: 'unready',
+	};
+
+	/**
+	 * TypeWriting constructor
+	 */
 	var TypeWriting = function(options, callback_func) {
 console.log(options);
 console.log(callback_func);
-	}
+	};
 
+	/**
+	 * public TypeWriting API :
+	 *
+	 * rewrite()
+	 */
 	TypeWriting.prototype.rewrite = function(input_string, callback_func) {
 console.log(input_string);
 console.log(callback_func);
-	}
+	};
 
 	return TypeWriting;
 
