@@ -68,8 +68,58 @@
 	 * TypeWriting constructor
 	 */
 	var TypeWriting = function(options, callback_func) {
-console.log(options);
-console.log(callback_func);
+		if( options && typeof options === "object" ) {
+			defaults = extendDefaults(defaults, options);
+		}
+
+		/**
+		 * check value from user
+		 * the string will be put in target later
+		 */
+		if( options.inputString ) {
+			if( typeof options.inputString !== 'string' )
+				throw new Error(`${options.inputString} is not a string`);
+		}
+		else
+			throw new Error('Missing argument: inputString');
+
+		/**
+		 * callback function
+		 */
+		if( callback_func ) {
+			if( typeof callback_func === 'function' )
+				defaults.tw_callback = callback_func;
+			else {
+				console.error(`${callback_func} is not a function`);
+				_cleanCallback.call(this);
+			}
+		} else
+			_cleanCallback.call(this);
+
+		// get the height of cursor should be
+		var cursorHeight = defaults.targetElement.offsetHeight;
+		var cursorWidth = parseInt(cursorHeight/3);
+		if( cursorHeight == 0 ) {
+			defaults.targetElement.innerHTML = 'I';
+			cursorHeight = defaults.targetElement.offsetHeight;
+			cursorWidth = defaults.targetElement.offsetWidth;
+		}
+
+		// prepare cursor style
+		const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}`;
+		var styleNode = document.createElement('style');
+			styleNode.type = 'text/css';
+		if( styleNode.styleSheet )
+			styleNode.styleSheet.cssText = cssStyle;
+		else
+			styleNode.appendChild(document.createTextNode(cssStyle));
+		// add CSS style in HEAD
+		document.head.appendChild(styleNode);
+
+		defaults.targetElement.className += ' typingCursor';
+		defaults.task = 'typing';
+		_typingGo.call(this);
+
 	};
 
 	/**
@@ -92,67 +142,6 @@ console.log(callback_func);
 }));
 
 // (function() {
-	
-// 	this.TypeWriting = function( options, callback_func ) {
-
-// 		var settings = {
-// 			targetElement	: null,
-// 			inputString 	: '',
-// 			typing_interval	: 150,
-// 			blink_interval	: '0.7s',
-// 			cursor_color	: 'black',
-// 			tw_callback		: function(){},
-// 			task			: 'unready',
-// 		}
-// 		if( options && typeof options === "object" ) {
-// 			this.settings = extendDefaults(settings, options);
-// 		}
-
-// 		// check inputString ---required
-// 		if( options.inputString ) {
-// 			if( typeof options.inputString !== 'string' )
-// 				throw new Error(`${options.inputString} is not a string`);
-// 		}
-// 		else
-// 			throw new Error('Missing argument: inputString');
-
-// 		// check callback
-// 		if( callback_func ) {
-// 			if( typeof callback_func === 'function' )
-// 				this.settings.tw_callback = callback_func;
-// 			else {
-// 				console.error(`${callback_func} is not a function`);
-// 				_cleanCallback.call(this);
-// 			}
-// 		} else
-// 			_cleanCallback.call(this);
-
-// 		// get the height of cursor should be
-// 		var cursorHeight = this.settings.targetElement.offsetHeight;
-// 		var cursorWidth = parseInt(cursorHeight/3);
-// 		if( cursorHeight == 0 ) {
-// 			this.settings.targetElement.innerHTML = 'I';
-// 			cursorHeight = this.settings.targetElement.offsetHeight;
-// 			cursorWidth = this.settings.targetElement.offsetWidth;
-// 		}
-
-// 		// prepare cursor style
-// 		const head = document.head;
-// 		const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${settings.cursor_color};-webkit-animation:blink ${settings.blink_interval} infinite;-moz-animation:blink ${settings.blink_interval} infinite;animation:blink ${settings.blink_interval} infinite}`;
-// 		var styleNode = document.createElement('style');
-// 			styleNode.type = 'text/css';
-// 		if( styleNode.styleSheet )
-// 			styleNode.styleSheet.cssText = cssStyle;
-// 		else
-// 			styleNode.appendChild(document.createTextNode(cssStyle));
-// 		// add CSS style in HEAD
-// 		head.appendChild(styleNode);
-
-// 		this.settings.targetElement.className += ' typingCursor';
-// 		this.settings.task = 'typing';
-// 		_typingGo.call(this);
-
-// 	}
 
 // 	TypeWriting.prototype.rewrite = function( input_string, callback_func ) {
 
