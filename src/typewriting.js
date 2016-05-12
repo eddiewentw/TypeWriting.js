@@ -1,3 +1,10 @@
+/*!
+ * TypeWriting
+ *
+ * Copyright © 2015 Eddie Wen | MIT license
+ * https://github.com/EddieWen-Taiwan/TypeWriting.js
+ */
+
 (function() {
 	
 	this.TypeWriting = function( options, callback_func ) {
