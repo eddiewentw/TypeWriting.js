@@ -143,8 +143,45 @@
 		 * change the text on the same target
 		 */
 		rewrite: function(input_string, callback_func) {
-			console.log(input_string);
-			console.log(callback_func);
+
+			if( defaults.task == 'typing' ) {
+				console.warn( 'Last task is not finished yet.' );
+				setTimeout( function() {
+					this.rewrite( input_string, callback_func );
+				}.bind(this), defaults.typing_interval );
+			}
+			else {
+				/**
+				 * check value
+				 * the string will be put in target later
+				 */
+				if( input_string ) {
+					if( typeof input_string == 'string' )
+						defaults.inputString = input_string;
+					else
+						throw new Error(`${input_string} is not a string`);
+				}
+				else
+					throw new Error('Missing argument: inputString');
+
+				/**
+				 * callback function
+				 */
+				if( callback_func ) {
+					if( typeof callback_func == 'function' )
+						defaults.tw_callback = callback_func;
+					else {
+						console.error(`${callback_func} is not a function`);
+						_cleanCallback();
+					}
+				}
+				else
+					_cleanCallback();
+
+				defaults.task = 'typing';
+				_typingGo();
+			}
+
 		}
 
 	};
@@ -152,44 +189,3 @@
 	return TypeWriting;
 
 }));
-
-// (function() {
-
-// 	TypeWriting.prototype.rewrite = function( input_string, callback_func ) {
-
-// 		if( this.settings.task == 'typing' ) {
-// 			console.warn( 'Last task is not finished yet.' );
-// 			setTimeout( function() {
-// 				this.rewrite( input_string, callback_func );
-// 			}.bind(this), this.settings.typing_interval );
-// 		}
-// 		else {
-// 			// Handle inputString ---required
-// 			if( input_string ) {
-// 				if( typeof input_string == 'string' )
-// 					this.settings.inputString = input_string;
-// 				else
-// 					console.error(`${input_string} is not a string`);
-// 			}
-// 			else
-// 				throw new Error('Missing argument: inputString');
-
-// 			// Handle callback
-// 			if( callback_func ) {
-// 				if( typeof callback_func == 'function' )
-// 					this.settings.tw_callback = callback_func;
-// 				else {
-// 					throw new Error(`${callback_func} is not a function`);
-// 					_cleanCallback.call(this);
-// 				}
-// 			}
-// 			else
-// 				_cleanCallback.call(this);
-
-// 			this.settings.task = 'typing';
-// 			_typingGo.call(this);
-// 		}
-
-// 	}
-
-// }());
