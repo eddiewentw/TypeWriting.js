@@ -71,12 +71,17 @@ console.log(callback_func);
 
 	/**
 	 * public TypeWriting API :
-	 *
-	 * rewrite()
 	 */
-	TypeWriting.prototype.rewrite = function(input_string, callback_func) {
-console.log(input_string);
-console.log(callback_func);
+	TypeWriting.prototype = {
+
+		/**
+		 * change the text on the same target
+		 */
+		rewrite: function(input_string, callback_func) {
+			console.log(input_string);
+			console.log(callback_func);
+		}
+
 	};
 
 	return TypeWriting;
