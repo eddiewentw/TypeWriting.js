@@ -1,5 +1,5 @@
 /*!
- * TypeWriting
+ * TypeWriting.js
  *
  * Copyright © 2015 Eddie Wen | MIT license
  * https://github.com/EddieWen-Taiwan/TypeWriting.js
