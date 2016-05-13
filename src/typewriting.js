@@ -6,10 +6,12 @@
  */
 
 (function(root, factory) {
+	'use strict';
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	root.TypeWriting = factory()
 }(this, function() {
+	'use strict';
 
 	var _currentNumber = 0,
 	_inHTMLTag = false,
@@ -28,7 +30,7 @@
 
 		if( _currentNumber < defaults.inputString.length ) {
 
-			const thisText = _getText();
+			var thisText = _getText();
 
 			if( thisText.slice(-1) == '<' ) {
 				_inHTMLTag = true;
@@ -118,7 +120,7 @@
 		}
 
 		// prepare cursor style
-		const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${defaults.cursor_color};-webkit-animation:blink ${defaults.blink_interval} infinite;-moz-animation:blink ${defaults.blink_interval} infinite;animation:blink ${defaults.blink_interval} infinite}`;
+		var cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${defaults.cursor_color};-webkit-animation:blink ${defaults.blink_interval} infinite;-moz-animation:blink ${defaults.blink_interval} infinite;animation:blink ${defaults.blink_interval} infinite}`;
 		var styleNode = document.createElement('style');
 			styleNode.type = 'text/css';
 		if( styleNode.styleSheet )
