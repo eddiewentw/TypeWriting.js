@@ -1,6 +1,6 @@
 ## TypeWriting.js
 
-If you want to make the typeing effect, this is what you need.
+If you want to make the typing effect, this is what you need.
 
 [TypeWriting DEMO](http://github.eddiewen.me/TypeWriting.js/)
 
@@ -22,6 +22,13 @@ npm install --save typewriting
 ~~~html
 <!-- just typewriting.js or .min.js -->
 <script type="text/javascript" src="path/to/typewriting.min.js"></script>
+~~~
+
+or
+
+~~~javascript
+// import in your .js file
+import TypeWriting from 'typewriting';
 ~~~
 
 I use the height of targetElement to set the cursor height. You could use its line-height to control cursor height.
