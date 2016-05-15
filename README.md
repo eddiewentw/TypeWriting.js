@@ -1,5 +1,7 @@
 ## TypeWriting.js
 
+![https://unsplash.com/photos/E0Spm6XXn2Y](cover.jpg)
+
 If you want to make the typing effect, this is what you need.
 
 [TypeWriting DEMO](http://github.eddiewen.me/TypeWriting.js/)
