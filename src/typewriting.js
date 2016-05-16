@@ -107,7 +107,8 @@
 				console.error(callback_func+' is not a function');
 				_cleanCallback();
 			}
-		} else
+		}
+		else
 			_cleanCallback();
 
 		/**
