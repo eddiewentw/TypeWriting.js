@@ -110,7 +110,10 @@
 		} else
 			_cleanCallback();
 
-		// get the height of cursor should be
+		/**
+		 * Calculate proper size of cursor
+		 * by inserting a new inline-element with `I`
+		 */
 		var cursorHeight = defaults.targetElement.offsetHeight;
 		var cursorWidth = parseInt(cursorHeight/3);
 		if( cursorHeight == 0 ) {
