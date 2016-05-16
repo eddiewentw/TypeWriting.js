@@ -92,7 +92,7 @@
 		 */
 		if( options.inputString ) {
 			if( typeof options.inputString !== 'string' )
-				throw new Error(`${options.inputString} is not a string`);
+				throw new Error(options.inputString+' is not a string');
 		}
 		else
 			throw new Error('Missing argument: inputString');
@@ -104,23 +104,27 @@
 			if( typeof callback_func === 'function' )
 				defaults.tw_callback = callback_func;
 			else {
-				console.error(`${callback_func} is not a function`);
+				console.error(callback_func+' is not a function');
 				_cleanCallback();
 			}
-		} else
+		}
+		else
 			_cleanCallback();
 
-		// get the height of cursor should be
-		var cursorHeight = defaults.targetElement.offsetHeight;
-		var cursorWidth = parseInt(cursorHeight/3);
-		if( cursorHeight == 0 ) {
-			defaults.targetElement.innerHTML = 'I';
-			cursorHeight = defaults.targetElement.offsetHeight;
-			cursorWidth = defaults.targetElement.offsetWidth;
-		}
+		/**
+		 * Calculate proper size of cursor
+		 * by inserting a new inline-element with `I`
+		 */
+		var calcDiv = document.createElement('div');
+			calcDiv.style.display = 'inline-block';
+			calcDiv.innerHTML = 'I';
+		defaults.targetElement.appendChild(calcDiv);
+		var cursorHeight = calcDiv.offsetHeight;
+		var cursorWidth = calcDiv.offsetWidth;
+		defaults.targetElement.removeChild(calcDiv);
 
 		// prepare cursor style
-		var cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${defaults.cursor_color};-webkit-animation:blink ${defaults.blink_interval} infinite;-moz-animation:blink ${defaults.blink_interval} infinite;animation:blink ${defaults.blink_interval} infinite}`;
+		var cssStyle = '@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:\'\';width:'+cursorWidth+'px;height:'+cursorHeight+'px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:'+defaults.cursor_color+';-webkit-animation:blink '+defaults.blink_interval+' infinite;-moz-animation:blink '+defaults.blink_interval+' infinite;animation:blink '+defaults.blink_interval+' infinite}';
 		var styleNode = document.createElement('style');
 			styleNode.type = 'text/css';
 		if( styleNode.styleSheet )
@@ -161,7 +165,7 @@
 					if( typeof input_string == 'string' )
 						defaults.inputString = input_string;
 					else
-						throw new Error(`${input_string} is not a string`);
+						throw new Error(input_string+' is not a string');
 				}
 				else
 					throw new Error('Missing argument: inputString');
@@ -173,7 +177,7 @@
 					if( typeof callback_func == 'function' )
 						defaults.tw_callback = callback_func;
 					else {
-						console.error(`${callback_func} is not a function`);
+						console.error(callback_func+' is not a function');
 						_cleanCallback();
 					}
 				}
