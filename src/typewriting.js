@@ -114,6 +114,11 @@
 		 * Calculate proper size of cursor
 		 * by inserting a new inline-element with `I`
 		 */
+		var calcDiv = document.createElement('div');
+		calcDiv.style.display = 'inline-block';
+		calcDiv.innerHTML = 'ABC';
+		defaults.targetElement.appendChild(calcDiv);
+		console.log(calcDiv);
 		var cursorHeight = defaults.targetElement.offsetHeight;
 		var cursorWidth = parseInt(cursorHeight/3);
 		if( cursorHeight == 0 ) {
