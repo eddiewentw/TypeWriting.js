@@ -17,15 +17,15 @@
 	<meta property="og:url" content="http://github.eddiewen.me/TypeWriting.js/"  />
 	<meta property="og:image" content="http://github.eddiewen.me/TypeWriting.js/cover.jpg" />
 	<style type="text/css">
-	body{width:100%;margin:0px;font-family:'Helvetica Neue';background-color:#020202;}.terminal{line-height:28px;font-size:26px;color:#00fd55;letter-spacing:2px;position:absolute;top:50%;left:30%;}.terminal::before{content:"＞";margin-right:10px;}.github{margin:20px;}
+	body{width:100%;margin:0px;font-family:'Helvetica Neue';background-color:#020202;}#t{line-height:28px;font-size:26px;color:#00fd55;letter-spacing:2px;position:absolute;top:50%;left:30%;}#t::before{content:"＞";margin-right:10px;}.g{margin:20px;}
 	</style>
 </head>
 
 <body>
 
-	<div class="terminal"></div>
+	<div id="t"></div>
 
-	<div class="github">
+	<div class="g">
 		<iframe src="https://ghbtns.com/github-btn.html?user=EddieWen-Taiwan&repo=TypeWriting.js&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 	</div>
 
@@ -38,7 +38,7 @@
 <script type="text/javascript">
 setTimeout( function() {
 	var typewriting = new TypeWriting({
-		targetElement	: document.getElementsByClassName('terminal')[0],
+		targetElement	: document.getElementById('t'),
 		inputString		: 'Hello, world.',
 		typing_interval	: 130,
 		blink_interval	: '1s',
@@ -48,8 +48,8 @@ setTimeout( function() {
 	});
 
 	setTimeout( function() { 
-		typewriting.rewrite( "This is TypeWriting.js", function() {
-			console.log("Rewrite is finished");
+		typewriting.rewrite( "Welcome to <a href=\'https://github.com/EddieWen-Taiwan/TypeWriting.js\'>TypeWriting.js", function() {
+			console.log("Rewrite() is finished");
 		});
 	}, 2500);
 }, 1e3);
