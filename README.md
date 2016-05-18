@@ -33,8 +33,6 @@ or
 import TypeWriting from 'typewriting';
 ~~~
 
-I use the height of targetElement to set the cursor height. You could use its line-height to control cursor height.
-
 ----
 
 ### `TypeWriting()`
@@ -50,15 +48,17 @@ Interval of the cursor blinks
 * __cursor_color__: _String_  
 Color of the cursor
 
+I use the height of targetElement to set the cursor height. You could use its line-height to control cursor height.
+
 Second parameter is the function after typing effect.
 
 ~~~javascript
 var typeWriting = new TypeWriting({
-	targetElement	: document.getElementsByClassName('terminal')[0],
-	inputString		: 'Hello, world.',
-	typing_interval	: 130,
-	blink_interval	: '1s',
-	cursor_color	: '#00fd55',
+	targetElement   : document.getElementsByClassName('terminal')[0],
+	inputString     : 'Hello, world.',
+	typing_interval : 130,
+	blink_interval  : '1s',
+	cursor_color    : '#00fd55',
 }, function() {
 	console.log("END");
 });
@@ -69,7 +69,7 @@ var typeWriting = new TypeWriting({
 You could use this function to do the same effect but different text at same element.
 
 ~~~javascript
-typeWriting.rewrite( "This is TypeWriting.js", function() {
-	console.log("Rewrite is finished");
+typeWriting.rewrite( "Welcome to TypeWriting.js", function() {
+	console.log("Rewrite() is finished");
 });
 ~~~
