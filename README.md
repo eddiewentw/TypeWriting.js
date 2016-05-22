@@ -23,7 +23,7 @@ npm install --save typewriting
 
 ~~~html
 <!-- just typewriting.js or .min.js -->
-<script type="text/javascript" src="path/to/typewriting.min.js"></script>
+<script src="path/to/typewriting.min.js"></script>
 ~~~
 
 or
