@@ -14,5 +14,11 @@
     "typing"
   ],
   "author": "Eddie Wen <eddiewen.tw@gmail.com> (http://eddiewen.me)",
-  "homepage": "https://github.com/EddieWen-Taiwan/TypeWriting.js#readme"
+  "homepage": "https://github.com/EddieWen-Taiwan/TypeWriting.js#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-uglify": "^2.0.1"
+  }
 }
