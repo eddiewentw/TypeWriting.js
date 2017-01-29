@@ -1,4 +1,4 @@
-## TypeWriting.js
+## TypeWriting.js [![npm version](https://badge.fury.io/js/typewriting.svg)](https://badge.fury.io/js/typewriting)
 
 ![https://unsplash.com/photos/E0Spm6XXn2Y](cover.jpg)
 
