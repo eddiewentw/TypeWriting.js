@@ -17,6 +17,7 @@
     "typing"
   ],
   "author": "Eddie Wen <eddiewen.tw@gmail.com> (http://eddiewen.me)",
+  "license": "MIT",
   "homepage": "https://github.com/EddieWen-Taiwan/TypeWriting.js#readme",
   "dependencies": {},
   "devDependencies": {
