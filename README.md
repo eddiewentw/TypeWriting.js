@@ -16,8 +16,7 @@ Just clone or download the zip of this repository
 or via [npm](https://www.npmjs.com/package/typewriting):
 
 ~~~bash
-$ npm install --save typewriting
-# or
+# npm install --save typewriting
 $ yarn add typewriting
 ~~~
 
