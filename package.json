@@ -6,13 +6,13 @@
     "type": "git",
     "url": "git+https://github.com/EddieWen-Taiwan/TypeWriting.js.git"
   },
-  "main": "build/typewriting.min.js",
+  "main": "dist/typewriting.min.js",
   "keywords": [
     "typewriter",
     "effect",
     "animation",
     "typing"
   ],
-  "author": "Eddie Wen <m20021991y@gmail.com> (http://eddiewen.me)",
+  "author": "Eddie Wen <eddiewen.tw@gmail.com> (http://eddiewen.me)",
   "homepage": "https://github.com/EddieWen-Taiwan/TypeWriting.js#readme"
 }
