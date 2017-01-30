@@ -167,45 +167,47 @@
 		/**
 		 * change the text on the same target
 		 */
-		rewrite(input_string, callback_func) {
+		rewrite(inputString, callbackFunction) {
 
-			if( defaults.task == 'typing' ) {
+			if( defaults.task === 'typing' ) {
 				console.warn( 'Last task is not finished yet.' );
 				setTimeout( function() {
-					this.rewrite( input_string, callback_func );
+					this.rewrite( inputString, callbackFunction );
 				}.bind(this), defaults.typing_interval );
+				return;
+			}
+
+			/**
+			 * check value
+			 * the string will be put in target later
+			 */
+			if( !inputString ) {
+				throw new Error('Missing argument: inputString');
+			}
+			if( typeof inputString !== 'string' ) {
+				throw new Error('`inputString` is not a string');
+			}
+
+			defaults.inputString = inputString;
+
+			/**
+			 * callback function
+			 */
+			if( callbackFunction ) {
+				if( typeof callbackFunction === 'function' ) {
+					defaults.tw_callback = callbackFunction;
+				}
+				else {
+					console.error(callbackFunction+' is not a function');
+					_cleanCallback();
+				}
 			}
 			else {
-				/**
-				 * check value
-				 * the string will be put in target later
-				 */
-				if( input_string ) {
-					if( typeof input_string == 'string' )
-						defaults.inputString = input_string;
-					else
-						throw new Error(input_string+' is not a string');
-				}
-				else
-					throw new Error('Missing argument: inputString');
-
-				/**
-				 * callback function
-				 */
-				if( callback_func ) {
-					if( typeof callback_func == 'function' )
-						defaults.tw_callback = callback_func;
-					else {
-						console.error(callback_func+' is not a function');
-						_cleanCallback();
-					}
-				}
-				else
-					_cleanCallback();
-
-				defaults.task = 'typing';
-				_typingGo();
+				_cleanCallback();
 			}
+
+			defaults.task = 'typing';
+			_typingGo();
 
 		}
 
