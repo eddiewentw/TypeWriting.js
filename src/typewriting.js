@@ -40,7 +40,7 @@
 		typing_interval	: 150,
 		blink_interval	: '0.7s',
 		cursor_color	: 'black',
-		tw_callback		: undefined,
+		tw_callback		: () => {},
 		task			: _taskStatus.UNREADY,
 	};
 
@@ -83,7 +83,7 @@
 	);
 
 	const _cleanCallback = () => {
-		defaults.tw_callback = undefined;
+		defaults.tw_callback = () => {};
 	};
 
 	// Utility method to extend defaults with user options
