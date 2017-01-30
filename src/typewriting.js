@@ -37,10 +37,10 @@
 	let defaults = {
 		targetElement	: null,
 		inputString 	: '',
-		typing_interval	: 150,
-		blink_interval	: '0.7s',
-		cursor_color	: 'black',
-		tw_callback		: () => {},
+		typingInterval	: 150,
+		blinkInterval	: '0.7s',
+		cursorColor		: 'black',
+		pluginCallback	: () => {},
 		task			: _taskStatus.UNREADY,
 	};
 
@@ -66,14 +66,14 @@
 			else {
 				setTimeout(() => {
 					_typingGo();
-				}, defaults.typing_interval);
+				}, defaults.typingInterval);
 			}
 
 		}
 		else {
 			defaults.task = _taskStatus.READY;
 			_currentNumber = 1;
-			defaults.tw_callback.call();
+			defaults.pluginCallback.call();
 		}
 
 	};
@@ -83,7 +83,7 @@
 	);
 
 	const _cleanCallback = () => {
-		defaults.tw_callback = () => {};
+		defaults.pluginCallback = () => {};
 	};
 
 	// Utility method to extend defaults with user options
@@ -128,7 +128,7 @@
 			 */
 			if( callbackFunction ) {
 				if( typeof callbackFunction === 'function' ) {
-					defaults.tw_callback = callbackFunction;
+					defaults.pluginCallback = callbackFunction;
 				}
 				else {
 					console.error(`${callbackFunction} is not a function`);
@@ -154,7 +154,7 @@
 			/**
 			 * cursor css style
 			 */
-			const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${defaults.cursor_color};-webkit-animation:blink ${defaults.blink_interval} infinite;-moz-animation:blink ${defaults.blink_interval} infinite;animation:blink ${defaults.blink_interval} infinite}`;
+			const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${defaults.cursorColor};-webkit-animation:blink ${defaults.blinkInterval} infinite;-moz-animation:blink ${defaults.blinkInterval} infinite;animation:blink ${defaults.blinkInterval} infinite}`;
 
 			/**
 			 * add CSS style in HEAD
@@ -184,7 +184,7 @@
 				console.warn('Last task is not finished yet');
 				setTimeout(() => {
 					this.rewrite( inputString, callbackFunction );
-				}, defaults.typing_interval);
+				}, defaults.typingInterval);
 				return;
 			}
 
@@ -206,7 +206,7 @@
 			 */
 			if( callbackFunction ) {
 				if( typeof callbackFunction === 'function' ) {
-					defaults.tw_callback = callbackFunction;
+					defaults.pluginCallback = callbackFunction;
 				}
 				else {
 					console.error(`${callbackFunction} is not a function`);

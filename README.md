@@ -42,11 +42,11 @@ import TypeWriting from 'typewriting';
 Your element
 * __inputString__: _String_ `required`  
 Your text
-* __typing_interval__: _Int_  
+* __typingInterval__: _Int_  
 Interval between each character
-* __blink_interval__: _String_  
+* __blinkInterval__: _String_  
 Interval of the cursor blinks
-* __cursor_color__: _String_  
+* __cursorColor__: _String_  
 Color of the cursor
 
 I use the height of targetElement to set the cursor height. You could use its line-height to control cursor height.
@@ -57,12 +57,10 @@ Second parameter is the function after typing effect.
 const typeWriting = new TypeWriting({
 	targetElement   : document.getElementsByClassName('terminal')[0],
 	inputString     : 'Hello, world.',
-	typing_interval : 130,
-	blink_interval  : '1s',
-	cursor_color    : '#00fd55',
-}, () => {
-	console.log('END');
-});
+	typingInterval : 130,
+	blinkInterval  : '1s',
+	cursorColor    : '#00fd55',
+}, () => console.log('END'));
 ~~~
 
 ### `rewrite()`
