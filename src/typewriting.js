@@ -172,7 +172,7 @@
 		rewrite(inputString, callbackFunction) {
 
 			if( defaults.task === 'typing' ) {
-				console.warn( 'Last task is not finished yet.' );
+				console.warn('Last task is not finished yet');
 				setTimeout(() => {
 					this.rewrite( inputString, callbackFunction );
 				}, defaults.typing_interval);
@@ -200,7 +200,7 @@
 					defaults.tw_callback = callbackFunction;
 				}
 				else {
-					console.error(callbackFunction+' is not a function');
+					console.error(`${callbackFunction} is not a function`);
 					_cleanCallback();
 				}
 			}
