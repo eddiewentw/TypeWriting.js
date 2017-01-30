@@ -25,7 +25,7 @@
 	/**
 	 * plugin task status
 	 */
-	const taskStatus = {
+	const _taskStatus = {
 		UNREADY: 'UNREADY',
 		READY: 'READY',
 		TYPEING: 'TYPEING',
@@ -41,7 +41,7 @@
 		blink_interval	: '0.7s',
 		cursor_color	: 'black',
 		tw_callback		: undefined,
-		task			: taskStatus.UNREADY,
+		task			: _taskStatus.UNREADY,
 	};
 
 	const _typingGo = () => {
@@ -71,7 +71,7 @@
 
 		}
 		else {
-			defaults.task = taskStatus.READY;
+			defaults.task = _taskStatus.READY;
 			_currentNumber = 1;
 			defaults.tw_callback.call();
 		}
@@ -170,7 +170,7 @@
 			document.head.appendChild(styleNode);
 
 			defaults.targetElement.className += ' typingCursor';
-			defaults.task = taskStatus.TYPING;
+			defaults.task = _taskStatus.TYPING;
 			_typingGo();
 
 		}
@@ -180,7 +180,7 @@
 		 */
 		rewrite(inputString, callbackFunction) {
 
-			if( defaults.task === taskStatus.TYPING ) {
+			if( defaults.task === _taskStatus.TYPING ) {
 				console.warn('Last task is not finished yet');
 				setTimeout(() => {
 					this.rewrite( inputString, callbackFunction );
@@ -217,7 +217,7 @@
 				_cleanCallback();
 			}
 
-			defaults.task = taskStatus.TYPING;
+			defaults.task = _taskStatus.TYPING;
 			_typingGo();
 
 		}
