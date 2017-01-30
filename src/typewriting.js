@@ -6,11 +6,19 @@
  */
 
 (function(root, factory) {
-	'use strict';
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	root.TypeWriting = factory()
-}(this, () => {
+	if( typeof define === 'function' && define.amd ) {
+		define(factory);
+	}
+	else if(typeof exports === 'object') {
+		module.exports = factory(require, exports, module);
+	}
+	else if( root ) {
+		root.TypeWriting = factory();
+	}
+	else {
+		window.TypeWriting = factory();
+	}
+}(this, (require, exports, module) => {
 	'use strict';
 
 	/**
