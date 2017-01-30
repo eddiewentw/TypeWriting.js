@@ -1,7 +1,7 @@
 /*!
  * TypeWriting.js
  *
- * Copyright © 2015 Eddie Wen | MIT license
+ * Copyright © 2017 Eddie Wen | MIT license
  * https://github.com/EddieWen-Taiwan/TypeWriting.js
  */
 
@@ -13,10 +13,19 @@
 }(this, function() {
 	'use strict';
 
-	var _currentNumber = 0,
-	_inHTMLTag = false,
+	/**
+	 * the exported string position
+	 */
+	let _currentNumber = 0;
+	/**
+	 * whether is between a html tag
+	 */
+	let _inHTMLTag = false;
 
-	defaults = {
+	/**
+	 * the default config
+	 */
+	const defaults = {
 		targetElement	: null,
 		inputString 	: '',
 		typing_interval	: 150,
@@ -24,9 +33,9 @@
 		cursor_color	: 'black',
 		tw_callback		: function(){},
 		task			: 'unready',
-	},
+	};
 
-	_typingGo = function() {
+	const _typingGo = () => {
 
 		if( _currentNumber < defaults.inputString.length ) {
 
@@ -56,20 +65,19 @@
 			defaults.tw_callback.call();
 		}
 
-	},
+	};
 
-	_getText = function() {
-		return defaults.inputString.slice( 0, ++_currentNumber );
-	},
+	const _getText = () => (
+		defaults.inputString.slice( 0, ++_currentNumber )
+	);
 
-	_cleanCallback = function() {
-		defaults.tw_callback = function(){};
-	},
+	const _cleanCallback = () => {
+		defaults.tw_callback = () => {};
+	};
 
 	// Utility method to extend defaults with user options
-	extendDefaults = function(source, properties) {
-		var property;
-		for( property in properties ) {
+	const extendDefaults = (source, properties) => {
+		for( const property in properties ) {
 			if( properties.hasOwnProperty(property) ) {
 				source[property] = properties[property];
 			}
@@ -80,7 +88,7 @@
 	/**
 	 * TypeWriting constructor
 	 */
-	var TypeWriting = function(options, callback_func) {
+	const TypeWriting = (options, callback_func) => {
 
 		if( options && typeof options === "object" ) {
 			defaults = extendDefaults(defaults, options);
@@ -148,7 +156,7 @@
 		/**
 		 * change the text on the same target
 		 */
-		rewrite: function(input_string, callback_func) {
+		rewrite: (input_string, callback_func) => {
 
 			if( defaults.task == 'typing' ) {
 				console.warn( 'Last task is not finished yet.' );
@@ -188,7 +196,7 @@
 				_typingGo();
 			}
 
-		}
+		},
 
 	};
 
