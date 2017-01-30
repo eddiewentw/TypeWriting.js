@@ -10,13 +10,13 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	root.TypeWriting = factory()
-}(this, function() {
+}(this, () => {
 	'use strict';
 
 	/**
 	 * the exported string position
 	 */
-	let _currentNumber = 0;
+	let _currentNumber = 1;
 	/**
 	 * whether is between a html tag
 	 */
@@ -31,29 +31,31 @@
 		typing_interval	: 150,
 		blink_interval	: '0.7s',
 		cursor_color	: 'black',
-		tw_callback		: function(){},
+		tw_callback		: undefined,
 		task			: 'unready',
 	};
 
 	const _typingGo = () => {
 
-		if( _currentNumber < defaults.inputString.length ) {
+		if( _currentNumber <= defaults.inputString.length ) {
 
-			var thisText = _getText();
+			const nextString = _sliceDisplayText(_currentNumber);
+			_currentNumber += 1;
 
-			if( thisText.slice(-1) == '<' ) {
+			if( nextString.slice(-1) === '<' ) {
 				_inHTMLTag = true;
 			}
-			else if( thisText.slice(-1) == '>' ) {
+			else if( nextString.slice(-1) === '>' ) {
 				_inHTMLTag = false;
 			}
 
-			defaults.targetElement.innerHTML = thisText;
+			defaults.targetElement.innerHTML = nextString;
 
-			if( _inHTMLTag )
+			if( _inHTMLTag ) {
 				_typingGo();
+			}
 			else {
-				setTimeout( function() {
+				setTimeout(() => {
 					_typingGo();
 				}, defaults.typing_interval);
 			}
@@ -61,18 +63,18 @@
 		}
 		else {
 			defaults.task = 'ready';
-			_currentNumber = 0;
+			_currentNumber = 1;
 			defaults.tw_callback.call();
 		}
 
 	};
 
-	const _getText = () => (
-		defaults.inputString.slice( 0, ++_currentNumber )
+	const _sliceDisplayText = (to) => (
+		defaults.inputString.slice( 0, to )
 	);
 
 	const _cleanCallback = () => {
-		defaults.tw_callback = () => {};
+		defaults.tw_callback = undefined;
 	};
 
 	// Utility method to extend defaults with user options
@@ -171,9 +173,9 @@
 
 			if( defaults.task === 'typing' ) {
 				console.warn( 'Last task is not finished yet.' );
-				setTimeout( function() {
+				setTimeout(() => {
 					this.rewrite( inputString, callbackFunction );
-				}.bind(this), defaults.typing_interval );
+				}, defaults.typing_interval);
 				return;
 			}
 
