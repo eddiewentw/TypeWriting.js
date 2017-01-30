@@ -25,7 +25,7 @@
 	/**
 	 * the default config
 	 */
-	const defaults = {
+	let defaults = {
 		targetElement	: null,
 		inputString 	: '',
 		typing_interval	: 150,
@@ -88,75 +88,86 @@
 	/**
 	 * TypeWriting constructor
 	 */
-	const TypeWriting = (options, callback_func) => {
+	class TypeWriting {
 
-		if( options && typeof options === "object" ) {
+		constructor(options, callbackFunction) {
+
+			if( !options || typeof options !== 'object' ) {
+				throw new Error('`options` is invalid');
+			}
+
+			/**
+			 * check value from user
+			 * the string will be put in target later
+			 */
+			if( !options.inputString ) {
+				throw new Error('Missing argument: inputString');
+			}
+			if( typeof options.inputString !== 'string' ) {
+				throw new Error('`inputString` is not a string');
+			}
+
+			/**
+			 * set the custom config
+			 */
 			defaults = extendDefaults(defaults, options);
-		}
 
-		/**
-		 * check value from user
-		 * the string will be put in target later
-		 */
-		if( options.inputString ) {
-			if( typeof options.inputString !== 'string' )
-				throw new Error(options.inputString+' is not a string');
-		}
-		else
-			throw new Error('Missing argument: inputString');
-
-		/**
-		 * callback function
-		 */
-		if( callback_func ) {
-			if( typeof callback_func === 'function' )
-				defaults.tw_callback = callback_func;
+			/**
+			 * callback function
+			 */
+			if( callbackFunction ) {
+				if( typeof callbackFunction === 'function' ) {
+					defaults.tw_callback = callbackFunction;
+				}
+				else {
+					console.error(`${callbackFunction} is not a function`);
+					_cleanCallback();
+				}
+			}
 			else {
-				console.error(callback_func+' is not a function');
 				_cleanCallback();
 			}
-		}
-		else
-			_cleanCallback();
 
-		/**
-		 * Calculate proper size of cursor
-		 * by inserting a new inline-element with `I`
-		 */
-		var calcDiv = document.createElement('div');
+			/**
+			 * Calculate proper size of cursor
+			 * by inserting a new inline-element with `I`
+			 */
+			const calcDiv = document.createElement('div');
 			calcDiv.style.display = 'inline-block';
 			calcDiv.innerHTML = 'I';
-		defaults.targetElement.appendChild(calcDiv);
-		var cursorHeight = calcDiv.offsetHeight;
-		var cursorWidth = calcDiv.offsetWidth;
-		defaults.targetElement.removeChild(calcDiv);
+			defaults.targetElement.appendChild(calcDiv);
+			const cursorHeight = calcDiv.offsetHeight;
+			const cursorWidth = calcDiv.offsetWidth;
+			defaults.targetElement.removeChild(calcDiv);
 
-		// prepare cursor style
-		var cssStyle = '@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:\'\';width:'+cursorWidth+'px;height:'+cursorHeight+'px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:'+defaults.cursor_color+';-webkit-animation:blink '+defaults.blink_interval+' infinite;-moz-animation:blink '+defaults.blink_interval+' infinite;animation:blink '+defaults.blink_interval+' infinite}';
-		var styleNode = document.createElement('style');
+			/**
+			 * cursor css style
+			 */
+			const cssStyle = `@-webkit-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@-moz-keyframes blink{0%,100%{opacity:1}50%{opacity:0}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.typingCursor::after{content:'';width:${cursorWidth}px;height:${cursorHeight}px;margin-left:5px;display:inline-block;vertical-align:bottom;background-color:${defaults.cursor_color};-webkit-animation:blink ${defaults.blink_interval} infinite;-moz-animation:blink ${defaults.blink_interval} infinite;animation:blink ${defaults.blink_interval} infinite}`;
+
+			/**
+			 * add CSS style in HEAD
+			 */
+			const styleNode = document.createElement('style');
 			styleNode.type = 'text/css';
-		if( styleNode.styleSheet )
-			styleNode.styleSheet.cssText = cssStyle;
-		else
-			styleNode.appendChild(document.createTextNode(cssStyle));
-		// add CSS style in HEAD
-		document.head.appendChild(styleNode);
+			if( styleNode.styleSheet ) {
+				styleNode.styleSheet.cssText = cssStyle;
+			}
+			else {
+				styleNode.appendChild(document.createTextNode(cssStyle));
+			}
+			document.head.appendChild(styleNode);
 
-		defaults.targetElement.className += ' typingCursor';
-		defaults.task = 'typing';
-		_typingGo();
+			defaults.targetElement.className += ' typingCursor';
+			defaults.task = 'typing';
+			_typingGo();
 
-	};
-
-	/**
-	 * public TypeWriting API :
-	 */
-	TypeWriting.prototype = {
+		}
 
 		/**
 		 * change the text on the same target
 		 */
-		rewrite: (input_string, callback_func) => {
+		rewrite(input_string, callback_func) {
 
 			if( defaults.task == 'typing' ) {
 				console.warn( 'Last task is not finished yet.' );
@@ -196,9 +207,9 @@
 				_typingGo();
 			}
 
-		},
+		}
 
-	};
+	}
 
 	return TypeWriting;
 
