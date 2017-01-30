@@ -12,9 +12,10 @@
   "main": "dist/typewriting.min.js",
   "keywords": [
     "typewriter",
-    "effect",
-    "animation",
-    "typing"
+    "typing",
+    "cursor",
+    "blinking",
+    "terminal-like"
   ],
   "author": "Eddie Wen <eddiewen.tw@gmail.com> (http://eddiewen.me)",
   "license": "MIT",
