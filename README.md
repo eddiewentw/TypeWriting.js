@@ -57,9 +57,9 @@ Second parameter is the function after typing effect.
 const typeWriting = new TypeWriting({
 	targetElement   : document.getElementsByClassName('terminal')[0],
 	inputString     : 'Hello, world.',
-	typingInterval : 130,
-	blinkInterval  : '1s',
-	cursorColor    : '#00fd55',
+	typingInterval  : 130,
+	blinkInterval   : '1s',
+	cursorColor     : '#00fd55',
 }, () => console.log('END'));
 ~~~
 
