@@ -3,7 +3,8 @@
   "version": "1.2.7",
   "description": "TypeWriting.js is a javascript library to make a typewriter effect.",
   "scripts": {
-    "dist": "gulp"
+    "dist": "gulp",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
