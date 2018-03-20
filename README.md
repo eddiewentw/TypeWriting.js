@@ -1,4 +1,6 @@
-## TypeWriting.js [![npm version](https://badge.fury.io/js/typewriting.svg)](https://badge.fury.io/js/typewriting)
+## TypeWriting.js
+
+[![npm version](https://badge.fury.io/js/typewriting.svg)](https://badge.fury.io/js/typewriting)
 
 ![https://unsplash.com/photos/E0Spm6XXn2Y](cover.jpg)
 
@@ -16,8 +18,9 @@ Just clone or download the zip of this repository
 or via [npm](https://www.npmjs.com/package/typewriting):
 
 ~~~bash
-# npm install --save typewriting
 $ yarn add typewriting
+
+# $ npm install --save typewriting
 ~~~
 
 ### Setup
