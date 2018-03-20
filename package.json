@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EddieWen-Taiwan/TypeWriting.js.git"
+    "url": "git+https://github.com/eddiewentw/TypeWriting.js.git"
   },
   "main": "dist/typewriting.min.js",
   "keywords": [
@@ -19,7 +19,7 @@
   ],
   "author": "Eddie Wen <eddiewen.tw@gmail.com> (http://eddiewen.me)",
   "license": "MIT",
-  "homepage": "https://github.com/EddieWen-Taiwan/TypeWriting.js#readme",
+  "homepage": "https://github.com/eddiewentw/TypeWriting.js#readme",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.22.2",
